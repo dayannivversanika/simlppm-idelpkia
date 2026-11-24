@@ -1339,7 +1339,7 @@
       ]);
     }
 
-    const GASBridge = {
+   const GASBridge = {
       isEmbeddedGAS() {
         return typeof google !== 'undefined' && google.script && google.script.run;
       },
@@ -1355,7 +1355,7 @@
             ? 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-400/15 text-emerald-300 border border-emerald-400/30'
             : 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400/15 text-amber-300 border border-amber-400/30';
         }
-        if (modeEl) modeEl.textContent = ok ? 'Spreadsheet Tersinkron' : 'Mode Lokal Aktif';
+        if (modeEl) modeEl.textContent = ok ? 'Spreadsheet Tersinkron' : 'Koneksi Cloud Terputus';
       },
       async loadCloudState() {
         this.updateStatusBadge('Membaca Spreadsheet...', true);
@@ -1368,36 +1368,81 @@
                 resolve(res);
               })
               .withFailureHandler((err) => {
-                this.updateStatusBadge('Mode Lokal Aktif', false);
+                this.updateStatusBadge('Gagal Baca Cloud', false);
                 resolve({ ok: false, error: String(err) });
               })
               .apiLoadAppState();
-          }), 6000);
+          }), 20000);
         }
         if (this.hasRemoteAPI()) {
           return withTimeout((async () => {
             try {
               const resp = await fetch(GAS_API_URL + '?action=load&t=' + Date.now(), {
                 method: 'GET',
-                redirect: 'follow',
-                cache: 'no-store'
+                redirect: 'follow'
               });
               const text = await resp.text();
               const data = JSON.parse(text);
               if (!data || !Array.isArray(data.users)) {
-                throw new Error('Respon Apps Script belum berupa JSON database.');
+                throw new Error('Respon Apps Script bukan JSON database. Pastikan sudah Deploy New version & akses Anyone.');
               }
               cloudHydrated = true;
               this.updateStatusBadge('Spreadsheet Aktif', true);
               return data;
             } catch (err) {
-              this.updateStatusBadge('Mode Lokal Aktif', false);
+              this.updateStatusBadge('Gagal Konek Cloud', false);
               return { ok: false, error: err.message };
             }
-          })(), 6000);
+          })(), 20000);
         }
         this.updateStatusBadge('Mode Lokal Aktif', false);
         return { ok: false, error: 'URL Apps Script belum diatur.' };
+      },
+      async sendAction(action, bodyObj) {
+        const payload = Object.assign({ action: action }, bodyObj || {});
+        this.updateStatusBadge('Menyimpan ke Spreadsheet...', true);
+
+        if (this.isEmbeddedGAS()) {
+          return withTimeout(new Promise((resolve) => {
+            const runner = google.script.run
+              .withSuccessHandler((res) => {
+                this.updateStatusBadge('Tersimpan di Spreadsheet', true);
+                resolve(res || { ok: true });
+              })
+              .withFailureHandler((err) => {
+                this.updateStatusBadge('Gagal Simpan Cloud', false);
+                resolve({ ok: false, error: String(err) });
+              });
+            if (action === 'registerUser') runner.apiRegisterUser(payload.user);
+            else if (action === 'updateUser') runner.apiUpdateUser(payload.user, payload.actor);
+            else if (action === 'appendLog') runner.apiAppendLog(payload.log);
+            else runner.apiSaveAppState(payload);
+          }), 20000);
+        }
+
+        if (this.hasRemoteAPI()) {
+          return withTimeout((async () => {
+            try {
+              const resp = await fetch(GAS_API_URL, {
+                method: 'POST',
+                redirect: 'follow',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+              });
+              const text = await resp.text();
+              const data = JSON.parse(text);
+              if (!data || !data.ok) {
+                throw new Error((data && data.error) || 'Gagal menyimpan ke Google Sheets.');
+              }
+              this.updateStatusBadge('Tersimpan di Spreadsheet', true);
+              return data;
+            } catch (err) {
+              this.updateStatusBadge('Gagal Simpan Cloud', false);
+              return { ok: false, error: err.message };
+            }
+          })(), 20000);
+        }
+        return { ok: false, error: 'URL Apps Script tidak aktif.' };
       },
       saveCloudState(stateObj) {
         const payload = {
@@ -1407,51 +1452,7 @@
           karyaList: stateObj.karyaList || [],
           logs: (stateObj.logs || []).slice(0, 120)
         };
-
-        cloudSaveQueue = cloudSaveQueue.then(async () => {
-          if (this.isEmbeddedGAS()) {
-            this.updateStatusBadge('Menyimpan Spreadsheet...', true);
-            return withTimeout(new Promise((resolve) => {
-              google.script.run
-                .withSuccessHandler((res) => {
-                  this.updateStatusBadge('Tersimpan di Spreadsheet', true);
-                  resolve(res || { ok: true });
-                })
-                .withFailureHandler((err) => {
-                  this.updateStatusBadge('Tersimpan Lokal', false);
-                  resolve({ ok: false, error: String(err) });
-                })
-                .apiSaveAppState(payload);
-            }), 8000);
-          }
-
-          if (this.hasRemoteAPI()) {
-            this.updateStatusBadge('Menyimpan Spreadsheet...', true);
-            return withTimeout((async () => {
-              try {
-                const resp = await fetch(GAS_API_URL, {
-                  method: 'POST',
-                  redirect: 'follow',
-                  cache: 'no-store',
-                  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                  body: JSON.stringify(payload)
-                });
-                const text = await resp.text();
-                const data = JSON.parse(text);
-                if (!data || !data.ok) {
-                  throw new Error((data && data.error) || 'Code.gs belum di-deploy versi baru.');
-                }
-                this.updateStatusBadge('Tersimpan di Spreadsheet', true);
-                return data;
-              } catch (err) {
-                this.updateStatusBadge('Tersimpan Lokal', false);
-                return { ok: false, error: err.message };
-              }
-            })(), 8000);
-          }
-          return { ok: false, error: 'URL Apps Script tidak aktif.' };
-        });
-
+        cloudSaveQueue = cloudSaveQueue.then(() => this.sendAction('saveAll', payload));
         return cloudSaveQueue;
       }
     };
@@ -1868,15 +1869,14 @@
       else { input.type = 'password'; btn.textContent = 'Lihat'; }
     }
 
-    async function handleLoginSubmit(event) {
+   async function handleLoginSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('btn-login-submit');
-      if (btn) btn.disabled = true;
+      if (btn) { btn.disabled = true; btn.textContent = 'Memeriksa Database...'; }
 
       try {
-        if (!cloudHydrated) {
-          await hydrateFromCloud(false);
-        }
+        // Selalu muat data terbaru dari Spreadsheet agar status validasi terbaru terbaca
+        await hydrateFromCloud(false);
         if (!Array.isArray(appState.users) || appState.users.length === 0) {
           initializeDefaultSeed();
         }
@@ -1892,7 +1892,7 @@
           return email === identifier || emailPrefix === identifier || nidn === identifier || name === identifier;
         });
 
-        if (!user) { showToast('Akun tidak ditemukan. Gunakan email @gmail.com atau NIDN terdaftar.', 'error'); return; }
+        if (!user) { showToast('Akun tidak ditemukan di Spreadsheet. Periksa email @gmail.com atau NIDN Anda.', 'error'); return; }
         if (safeDecodePass(user.passwordHash) !== password) { showToast('Password yang Anda masukkan tidak sesuai.', 'error'); return; }
         if (user.status === 'Menunggu Validasi') { showToast('Akun Anda masih berstatus "Menunggu Validasi" oleh Admin / Ketua LPPM.', 'warning'); return; }
         if (user.status === 'Ditolak') { showToast('Permohonan akun Anda ditolak. Silakan hubungi sekretariat LPPM.', 'error'); return; }
@@ -1900,26 +1900,38 @@
         appState.currentUser = user;
         appState.sessionExpiresAt = Date.now() + SESSION_DURATION_MS;
         saveLocalOnly();
-        saveAndSyncCloud('Login Berhasil', 'Pengguna ' + user.email + ' (' + user.role + ') masuk ke sistem.');
+
+        // Kirim log login saja tanpa menimpa sheet Users
+        GASBridge.sendAction('appendLog', {
+          log: {
+            id: 'LOG-' + Date.now(),
+            timestamp: new Date().toLocaleString('id-ID'),
+            actor: user.name + ' (' + user.role + ')',
+            category: 'Login Berhasil',
+            detail: 'Pengguna ' + user.email + ' (' + user.role + ') masuk ke sistem.'
+          }
+        });
+
         showToast('Selamat datang kembali, ' + user.name + '!', 'success');
         document.getElementById('login-form').reset();
         enterAuthenticatedApp();
       } finally {
-        if (btn) btn.disabled = false;
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '\x3Cspan>Masuk ke SIMLPPM IDE LPKIA\x3C/span>\x3Ci class="ti ti-arrow-right text-base">\x3C/i>';
+        }
       }
     }
 
     async function handleRegisterSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('btn-register-submit');
-      if (btn) btn.disabled = true;
+      if (btn) { btn.disabled = true; btn.textContent = 'Menyimpan ke Google Sheets...'; }
 
       try {
-        await hydrateFromCloud(false);
         const email = document.getElementById('reg-email').value.trim().toLowerCase();
-        if (!isValidGmail(email)) { showToast('Registrasi wajib menggunakan alamat email @gmail.com.', 'error'); return; }
-        if (appState.users.some((u) => u.email.toLowerCase() === email)) {
-          showToast('Alamat email @gmail.com tersebut sudah terdaftar.', 'error');
+        if (!isValidGmail(email)) {
+          showToast('Registrasi wajib menggunakan alamat email @gmail.com.', 'error');
           return;
         }
 
@@ -1937,100 +1949,113 @@
           passwordHash: safeEncodePass(document.getElementById('reg-password').value)
         };
 
-        appState.users.push(newUser);
-        await saveAndSyncCloud('Registrasi Mandiri Dosen', 'Pendaftaran akun dosen baru: ' + newUser.name + ' (' + newUser.email + ') — Menunggu Validasi.');
-        showToast('Registrasi berhasil! Menunggu validasi Admin / Ketua LPPM.', 'success');
+        // Kirim langsung secara atomik ke Google Sheets
+        const res = await GASBridge.sendAction('registerUser', { user: newUser });
+        if (!res || !res.ok) {
+          showToast('Gagal menyimpan ke Google Sheets: ' + ((res && res.error) || 'Periksa koneksi atau deploy Code.gs.'), 'error');
+          return;
+        }
+
+        if (Array.isArray(res.users)) appState.users = res.users;
+        else appState.users.push(newUser);
+        saveLocalOnly();
+
+        showToast('Registrasi berhasil & tercatat di Google Sheets! Menunggu validasi Admin di perangkat mana saja.', 'success');
         event.target.reset();
         switchAuthTab('login');
       } finally {
-        if (btn) btn.disabled = false;
+        if (btn) { btn.disabled = false; btn.textContent = 'Daftarkan Akun Dosen'; }
       }
     }
 
-    function handleLogout(isExpired) {
-      if (appState.currentUser) {
-        saveAndSyncCloud(isExpired ? 'Sesi Berakhir Otomatis' : 'Logout Sistem', 'Pengguna ' + appState.currentUser.email + ' keluar dari sistem.');
-      }
-      UserStorageRepository.clearActiveSession();
-      appState.currentUser = null;
-      appState.sessionExpiresAt = null;
-      saveLocalOnly();
-
-      if (sessionCountdownInterval) { clearInterval(sessionCountdownInterval); sessionCountdownInterval = null; }
-      document.getElementById('auth-view').classList.remove('hidden');
-      document.getElementById('app-view').classList.add('hidden');
-      document.getElementById('application-sidebar').classList.add('hidden');
-      document.getElementById('application-sidebar').classList.remove('flex');
-      document.getElementById('navbar-user-panel').classList.add('hidden');
-      document.getElementById('navbar-user-panel').classList.remove('flex');
-      document.getElementById('mobile-sidebar-toggle').classList.add('hidden');
-      document.getElementById('mobile-sidebar-toggle').classList.remove('flex');
-      showToast(isExpired ? 'Sesi aktif 30 menit telah habis. Silakan masuk kembali.' : 'Anda telah keluar dari SIMLPPM IDE LPKIA.', isExpired ? 'warning' : 'info');
-    }
-
-    function startSessionTimer() {
-      if (sessionCountdownInterval) clearInterval(sessionCountdownInterval);
-      const updateTimerDisplay = () => {
-        if (!appState.currentUser || !appState.sessionExpiresAt) return;
-        const remainingMs = appState.sessionExpiresAt - Date.now();
-        if (0 >= remainingMs) { handleLogout(true); return; }
-        const totalSec = Math.floor(remainingMs / 1000);
-        const mins = String(Math.floor(totalSec / 60)).padStart(2, '0');
-        const secs = String(totalSec % 60).padStart(2, '0');
-        const el = document.getElementById('session-timer-text');
-        if (el) el.textContent = mins + ':' + secs;
-      };
-      updateTimerDisplay();
-      sessionCountdownInterval = setInterval(updateTimerDisplay, 1000);
-    }
-
-    function extendSessionOnActivity() {
-      if (appState.currentUser && appState.sessionExpiresAt && appState.sessionExpiresAt > Date.now()) {
-        appState.sessionExpiresAt = Date.now() + SESSION_DURATION_MS;
-      }
-    }
-
-    function isManagerRole() {
-      return appState.currentUser && (appState.currentUser.role === 'Admin' || appState.currentUser.role === 'Ketua LPPM');
-    }
-
-    function enterAuthenticatedApp() {
-      const user = appState.currentUser;
+    async function quickUpdateUserStatus(userId, newStatus) {
+      const user = appState.users.find((u) => u.id === userId);
       if (!user) return;
-      document.getElementById('auth-view').classList.add('hidden');
-      document.getElementById('app-view').classList.remove('hidden');
-      document.getElementById('application-sidebar').classList.remove('hidden');
-      document.getElementById('application-sidebar').classList.add('flex');
-      document.getElementById('navbar-user-panel').classList.remove('hidden');
-      document.getElementById('navbar-user-panel').classList.add('flex');
-      document.getElementById('mobile-sidebar-toggle').classList.remove('hidden');
-      document.getElementById('mobile-sidebar-toggle').classList.add('flex');
 
-      document.getElementById('nav-user-name').textContent = user.name;
-      document.getElementById('nav-user-role-badge').textContent = user.role;
-      document.getElementById('nav-user-email').textContent = user.email;
-      document.getElementById('welcome-role-pill').textContent = user.role.toUpperCase();
-      document.getElementById('welcome-nidn').textContent = user.nidn || '-';
-      document.getElementById('welcome-prodi').textContent = user.prodi || '-';
-      document.getElementById('welcome-name').textContent = user.name;
+      const updated = Object.assign({}, user, {
+        status: newStatus,
+        validatedAt: (newStatus === 'Disetujui' || newStatus === 'Ditolak') ? formatValidationTimestamp(new Date()) : null,
+        validatedBy: (newStatus === 'Disetujui' || newStatus === 'Ditolak') ? (appState.currentUser ? appState.currentUser.name : 'Ketua LPPM') : ''
+      });
 
-      const isManager = isManagerRole();
-      document.getElementById('welcome-subtitle').textContent = isManager
-        ? 'Panel kendali penuh Manajemen Surat Resmi IDE LPKIA, Pengajuan Karya Ilmiah Dosen, Validasi TTD, dan Otorisasi Akun.'
-        : 'Portal Dosen IDE LPKIA Bandung untuk pengajuan Surat Tugas, Kontrak Penelitian, dan Repositori Karya Ilmiah.';
+      const res = await GASBridge.sendAction('updateUser', {
+        user: updated,
+        actor: appState.currentUser ? (appState.currentUser.name + ' (' + appState.currentUser.role + ')') : 'Admin LPPM'
+      });
 
-      document.querySelectorAll('.admin-only-menu').forEach((el) => el.classList.toggle('hidden', !isManager));
-      const btnTtdHeader = document.getElementById('btn-upload-ttd-header');
-      if (btnTtdHeader) btnTtdHeader.classList.toggle('hidden', !isManager);
+      if (!res || !res.ok) {
+        showToast('Gagal menyimpan validasi ke Google Sheets: ' + ((res && res.error) || 'Coba lagi.'), 'error');
+        return;
+      }
 
-      initSuratFormDefaults();
-      const karyaProdiEl = document.getElementById('karya-prodi');
-      if (karyaProdiEl && user.prodi) karyaProdiEl.value = user.prodi;
-      const karyaDriveEl = document.getElementById('karya-gdrive');
-      if (karyaDriveEl && user.driveUrl) karyaDriveEl.value = user.driveUrl;
+      if (Array.isArray(res.users)) appState.users = res.users;
+      else Object.assign(user, updated);
+      saveLocalOnly();
+      renderAkunTable();
 
-      startSessionTimer();
-      switchMainTab('dashboard');
+      const labelStatus = newStatus === 'Disetujui' ? 'Tervalidasi' : newStatus;
+      showToast('Akun ' + updated.name + ' berstatus ' + labelStatus + ' & tersimpan ke Spreadsheet!', 'success');
+    }
+
+    async function handleEditAkunSubmit(event) {
+      event.preventDefault();
+      const btn = document.getElementById('btn-save-edit-akun');
+      if (btn) { btn.disabled = true; btn.textContent = 'Menyimpan...'; }
+
+      try {
+        const id = document.getElementById('edit-akun-id').value;
+        const user = appState.users.find((u) => u.id === id);
+        if (!user) return;
+
+        const email = document.getElementById('edit-akun-email').value.trim().toLowerCase();
+        if (!isValidGmail(email)) { showToast('Alamat email wajib menggunakan domain @gmail.com.', 'error'); return; }
+
+        const wasApproved = user.status === 'Disetujui';
+        const newStatus = document.getElementById('edit-akun-status').value;
+
+        const updated = Object.assign({}, user, {
+          name: document.getElementById('edit-akun-name').value.trim(),
+          nidn: document.getElementById('edit-akun-nidn').value.trim(),
+          email: email,
+          prodi: document.getElementById('edit-akun-prodi').value,
+          role: document.getElementById('edit-akun-role').value,
+          status: newStatus,
+          driveUrl: document.getElementById('edit-akun-drive').value.trim(),
+          passwordHash: safeEncodePass(document.getElementById('edit-akun-password').value)
+        });
+
+        if (newStatus === 'Disetujui' && (!wasApproved || !updated.validatedAt)) {
+          updated.validatedAt = formatValidationTimestamp(new Date());
+          updated.validatedBy = appState.currentUser ? appState.currentUser.name : 'Admin LPPM';
+        } else if (newStatus === 'Menunggu Validasi') {
+          updated.validatedAt = null;
+          updated.validatedBy = '';
+        }
+
+        const res = await GASBridge.sendAction('updateUser', {
+          user: updated,
+          actor: appState.currentUser ? (appState.currentUser.name + ' (' + appState.currentUser.role + ')') : 'Admin LPPM'
+        });
+
+        if (!res || !res.ok) {
+          showToast('Gagal menyimpan perubahan ke Google Sheets: ' + ((res && res.error) || 'Coba lagi.'), 'error');
+          return;
+        }
+
+        if (Array.isArray(res.users)) appState.users = res.users;
+        else Object.assign(user, updated);
+
+        if (appState.currentUser && appState.currentUser.id === updated.id) {
+          appState.currentUser = updated;
+        }
+
+        saveLocalOnly();
+        renderAkunTable();
+        closeModal('modal-edit-akun');
+        showToast('Perubahan akun ' + updated.name + ' tersimpan permanen di Spreadsheet!', 'success');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Simpan ke Spreadsheet'; }
+      }
     }
 
     /* ==========================================================================
