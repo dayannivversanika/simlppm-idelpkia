@@ -8,20 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sacramento&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sacramento&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 
   <style>
+    /* ==========================================================================
+       DESIGN SYSTEM: DEEP SLATE NAVY & WARM COPPER-GOLD EDITORIAL
+       ========================================================================== */
     :root,
     [data-theme="navy"] {
       --bg-base: #1b2d3f;
       --bg-deep: #132231;
-      --bg-surface: rgba(24, 42, 60, 0.76);
-      --bg-surface-strong: rgba(19, 34, 49, 0.92);
+      --bg-surface: rgba(24, 42, 60, 0.78);
+      --bg-surface-strong: rgba(19, 34, 49, 0.93);
       --bg-subcard: rgba(255, 255, 255, 0.06);
-      --bg-input: rgba(14, 26, 39, 0.72);
+      --bg-input: rgba(14, 26, 39, 0.74);
 
       --sand: #e5bc98;
       --sand-hover: #f0cda9;
@@ -47,10 +50,10 @@
     [data-theme="sand"] {
       --bg-base: #f5efe6;
       --bg-deep: #ebe1d3;
-      --bg-surface: rgba(255, 252, 247, 0.86);
-      --bg-surface-strong: rgba(255, 252, 247, 0.95);
+      --bg-surface: rgba(255, 252, 247, 0.88);
+      --bg-surface-strong: rgba(255, 252, 247, 0.96);
       --bg-subcard: rgba(200, 134, 82, 0.08);
-      --bg-input: rgba(255, 255, 255, 0.92);
+      --bg-input: rgba(255, 255, 255, 0.94);
 
       --sand: #22384d;
       --sand-hover: #172737;
@@ -92,6 +95,10 @@
       font-family: 'Sacramento', cursive;
       font-weight: 400;
       letter-spacing: 0.5px;
+    }
+
+    .font-serif-editorial {
+      font-family: 'Cormorant Garamond', Georgia, serif;
     }
 
     .editorial-card {
@@ -167,11 +174,10 @@
     .sidebar-nav-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       width: 100%;
       padding: 10px 14px;
-      border-radius: 12px;
+      border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-secondary);
@@ -212,25 +218,15 @@
     }
 
     .foil-ornament-bl {
-      position: fixed; left: -40px; bottom: -40px; width: 340px; height: 210px;
-      pointer-events: none; z-index: 0; opacity: 0.65;
+      position: fixed; left: -40px; bottom: -40px; width: 360px; height: 220px;
+      pointer-events: none; z-index: 0; opacity: 0.72;
     }
     .foil-ornament-tr {
       position: fixed; right: -30px; top: -20px; width: 240px; height: 170px;
-      pointer-events: none; z-index: 0; opacity: 0.55;
+      pointer-events: none; z-index: 0; opacity: 0.60;
     }
     [data-theme="sand"] .foil-ornament-bl,
     [data-theme="sand"] .foil-ornament-tr { opacity: 0.35; }
-
-    .vertical-rail-text {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      letter-spacing: 0.32em;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-muted);
-      opacity: 0.72;
-    }
 
     @keyframes spinSlow {
       from { transform: rotate(0deg); }
@@ -330,11 +326,20 @@
   <div id="main-wrapper" class="relative z-10 flex min-h-screen w-full">
 
     <!-- ================= LEFT SIDEBAR ================= -->
-    <aside id="application-sidebar" aria-label="Menu Samping Utama" class="editorial-sidebar fixed xl:static inset-y-0 left-0 z-50 w-[278px] flex-col justify-between shrink-0 transition-transform duration-300 -translate-x-full xl:translate-x-0 hidden">
+    <aside id="application-sidebar" aria-label="Menu Samping Utama" class="editorial-sidebar fixed xl:static inset-y-0 left-0 z-50 w-[274px] flex-col justify-between shrink-0 transition-transform duration-300 -translate-x-full xl:translate-x-0 hidden">
       <div>
         <div class="px-6 py-5 flex items-center justify-between border-b border-[var(--border-soft)]">
           <div class="flex items-center gap-3">
-            <div id="sidebar-logo-holder" class="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shrink-0 shadow-sm"></div>
+            <div id="sidebar-logo-holder" class="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm">
+              <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
+                <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
+                <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
+                <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
+                <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
+                <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
+                <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+              </svg>
+            </div>
             <div>
               <span class="font-extrabold text-sm tracking-tight text-[var(--text-primary)] block leading-tight">SIMLPPM LPKIA</span>
               <span class="text-[11px] font-semibold text-[#e5bc98]">IDE LPKIA Bandung</span>
@@ -348,40 +353,44 @@
         <div class="px-4 py-5 space-y-6 overflow-y-auto max-h-[calc(100vh-230px)]">
           <div>
             <div class="px-3 mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-              DASHBOARD & LAYANAN LPPM
+              DASHBOARD &amp; LAYANAN LPPM
             </div>
             <nav aria-label="Menu Modul Utama" class="space-y-1.5">
               <button type="button" id="nav-tab-dashboard" onclick="switchMainTab('dashboard'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item active">
-                <span class="flex items-center gap-3"><i class="ti ti-layout-dashboard text-lg shrink-0"></i><span>Dashboard Utama</span></span>
+                <i class="ti ti-layout-dashboard text-lg shrink-0"></i>
+                <span>Dashboard Utama</span>
               </button>
               <button type="button" id="nav-tab-surat-form" onclick="switchMainTab('surat-form'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-file-plus text-lg shrink-0"></i><span>Formulir Pembuatan Surat</span></span>
+                <i class="ti ti-file-plus text-lg shrink-0"></i>
+                <span>Formulir Pembuatan Surat</span>
               </button>
               <button type="button" id="nav-tab-surat-list" onclick="switchMainTab('surat-list'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-file-certificate text-lg shrink-0"></i><span>Antrean & Daftar Surat</span></span>
-                <span id="badge-pending-surat" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
+                <i class="ti ti-file-certificate text-lg shrink-0"></i>
+                <span>Antrean &amp; Daftar Surat</span>
               </button>
               <button type="button" id="nav-tab-karya-form" onclick="switchMainTab('karya-form'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-upload text-lg shrink-0"></i><span>Formulir Proposal & Karya</span></span>
+                <i class="ti ti-upload text-lg shrink-0"></i>
+                <span>Formulir Proposal &amp; Karya</span>
               </button>
               <button type="button" id="nav-tab-karya-list" onclick="switchMainTab('karya-list'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-books text-lg shrink-0"></i><span>Daftar Pengajuan Karya</span></span>
-                <span id="badge-pending-karya" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
+                <i class="ti ti-books text-lg shrink-0"></i>
+                <span>Daftar Pengajuan Karya</span>
               </button>
             </nav>
           </div>
 
           <div id="sidebar-admin-group" class="admin-only-menu hidden">
             <div class="px-3 mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-              ADMINISTRASI & AUDIT
+              ADMINISTRASI &amp; AUDIT
             </div>
             <nav aria-label="Menu Administrasi" class="space-y-1.5">
               <button type="button" id="nav-tab-akun" onclick="switchMainTab('akun'); toggleMobileSidebar(false);" class="main-tab-btn admin-only-menu sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-users text-lg shrink-0"></i><span>Validasi & Kelola Akun</span></span>
-                <span id="badge-pending-akun" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
+                <i class="ti ti-users text-lg shrink-0"></i>
+                <span>Validasi &amp; Kelola Akun</span>
               </button>
               <button type="button" id="nav-tab-logs" onclick="switchMainTab('logs'); toggleMobileSidebar(false);" class="main-tab-btn admin-only-menu sidebar-nav-item">
-                <span class="flex items-center gap-3"><i class="ti ti-history text-lg shrink-0"></i><span>Log Aktivitas & Audit</span></span>
+                <i class="ti ti-history text-lg shrink-0"></i>
+                <span>Log Aktivitas &amp; Audit</span>
               </button>
             </nav>
           </div>
@@ -390,7 +399,7 @@
 
       <div class="p-4 m-4 editorial-subcard space-y-2.5">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-[#e5bc98]/20 text-[#e5bc98] flex items-center justify-center shrink-0">
+          <div class="w-8 h-8 rounded-full bg-[#e5bc98]/20 text-[#e5bc98] flex items-center justify-center shrink-0">
             <i class="ti ti-shield-check text-base"></i>
           </div>
           <div class="text-xs">
@@ -402,7 +411,7 @@
           <span>NIDN. 0424099204</span>
           <span class="text-[#e5bc98] font-bold">v5.4</span>
         </div>
-        <button type="button" onclick="handleLogout()" class="w-full bg-red-500/15 hover:bg-red-500/25 text-red-300 border border-red-400/30 font-semibold text-xs py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer">
+        <button type="button" onclick="handleLogout()" class="w-full bg-red-500/15 hover:bg-red-500/25 text-red-300 border border-red-400/30 font-semibold text-xs py-2 px-3 rounded-full transition flex items-center justify-center gap-1.5 cursor-pointer">
           <i class="ti ti-power text-sm"></i>
           <span>Keluar Sesi</span>
         </button>
@@ -420,14 +429,23 @@
               <i class="ti ti-menu-2 text-xl"></i>
             </button>
 
-            <div id="navbar-logo-holder" class="w-11 h-11 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm" aria-label="Logo Resmi IDE LPKIA Bandung"></div>
+            <div id="navbar-logo-holder" class="w-11 h-11 rounded-full bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm" aria-label="Logo Resmi IDE LPKIA Bandung">
+              <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
+                <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
+                <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
+                <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
+                <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
+                <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
+                <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+              </svg>
+            </div>
             <div>
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="font-extrabold text-base sm:text-lg tracking-tight text-[var(--text-primary)]">SIMLPPM IDE LPKIA</span>
                 <span id="gas-sync-pill" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#e5bc98]/15 text-[#e5bc98] border border-[#e5bc98]/30">Menghubungkan Cloud...</span>
               </div>
               <p class="text-[11px] text-[var(--text-muted)]">
-                created by <span class="text-[var(--text-primary)] font-semibold">Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</span>
+                created by <span class="text-[#e5bc98] font-semibold">Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</span>
               </p>
             </div>
           </div>
@@ -439,11 +457,11 @@
             </button>
 
             <div id="navbar-user-panel" class="hidden items-center gap-2.5 flex-wrap">
-              <div class="editorial-subcard px-3.5 py-1.5 text-xs">
+              <div class="editorial-subcard px-3.5 py-1.5 text-xs rounded-full">
                 <div class="flex items-center gap-2">
                   <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
                   <span id="nav-user-name" class="font-bold text-[var(--text-primary)]">-</span>
-                  <span id="nav-user-role-badge" class="px-2 py-0.5 rounded-md bg-[#e5bc98]/20 text-[#e5bc98] font-bold text-[10px] uppercase">-</span>
+                  <span id="nav-user-role-badge" class="px-2 py-0.5 rounded-full bg-[#e5bc98]/20 text-[#e5bc98] font-bold text-[10px] uppercase">-</span>
                 </div>
                 <div class="flex items-center justify-between gap-3 text-[11px] text-[var(--text-muted)] mt-0.5">
                   <span id="nav-user-email">-</span>
@@ -467,16 +485,21 @@
         <section id="auth-view" class="py-4 sm:py-8 my-2">
           <div class="max-w-5xl mx-auto editorial-card overflow-hidden grid grid-cols-1 lg:grid-cols-12">
 
-            <!-- Kolom Kiri -->
+            <!-- Kolom Kiri: Editorial Hero -->
             <div class="lg:col-span-6 p-8 sm:p-10 relative flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[var(--border-soft)] bg-gradient-to-br from-[#1b2d3f]/65 to-[#101c28]/80">
-              <div class="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 vertical-rail-text select-none">
-                SIMLPPM • IDE LPKIA BANDUNG
-              </div>
-
-              <div class="sm:pl-6">
+              <div>
                 <div class="flex items-center justify-between gap-3 mb-7">
                   <div class="flex items-center gap-3">
-                    <div id="auth-logo-holder" class="w-14 h-14 bg-white rounded-2xl p-2 shadow-md flex items-center justify-center shrink-0"></div>
+                    <div id="auth-logo-holder" class="w-14 h-14 bg-white rounded-full p-2 shadow-md border-2 border-[#dca782]/70 flex items-center justify-center shrink-0">
+                      <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
+                        <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
+                        <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
+                        <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
+                        <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
+                        <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
+                        <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+                      </svg>
+                    </div>
                     <div>
                       <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#e5bc98]">Portal Resmi LPPM</span>
                       <h1 class="text-sm sm:text-base font-extrabold text-[#f5efe8] leading-snug">INSTITUT DIGITAL EKONOMI LPKIA</h1>
@@ -484,13 +507,13 @@
                     </div>
                   </div>
 
-                  <div class="hidden sm:flex items-center justify-center relative w-20 h-20 shrink-0">
+                  <div class="hidden sm:flex items-center justify-center relative w-20 h-20 shrink-0 rounded-full bg-[#121c28]/80 border border-[#e5bc98]/40">
                     <svg viewBox="0 0 100 100" class="w-20 h-20 spin-seal text-[#e5bc98]">
                       <defs>
                         <path id="sealPath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
                       </defs>
-                      <text font-size="8.2" font-weight="700" fill="currentColor" letter-spacing="2.2">
-                        <textPath href="#sealPath">LPPM IDE LPKIA • BANDUNG RESMI •</textPath>
+                      <text font-size="7.8" font-weight="700" fill="currentColor" letter-spacing="2.2">
+                        <textPath href="#sealPath">LPPM IDE LPKIA &bull; BANDUNG RESMI &bull;</textPath>
                       </text>
                     </svg>
                     <div class="absolute inset-0 flex items-center justify-center">
@@ -500,7 +523,7 @@
                 </div>
 
                 <div class="font-script text-4xl sm:text-5xl text-[#e5bc98] leading-tight mb-3">
-                  Explore research excellence
+                  Explore your research
                 </div>
                 <p class="text-xs sm:text-sm text-[#c5d1dc] leading-relaxed mb-5">
                   Layanan terpadu pengajuan Surat Tugas Penelitian, Pengabdian kepada Masyarakat (PkM), Kontrak Penelitian, Narasumber, Publikasi Ilmiah, SK Selesai, serta repositori Proposal, Laporan Akhir, dan Karya Ilmiah Dosen.
@@ -512,15 +535,20 @@
                 </div>
               </div>
 
-              <div class="sm:pl-6 mt-8 pt-5 border-t border-[#e5bc98]/20 text-[11px] text-[#9cb0c3] space-y-1">
+              <div class="mt-8 pt-5 border-t border-[#e5bc98]/20 text-[11px] text-[#9cb0c3] space-y-1">
                 <p class="text-[#f5efe8] font-semibold">created by Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</p>
-                <p class="font-bold text-[#e5bc98] tracking-wide">"LULUSANNYA MUDAH BEKERJA & BERSERTIFIKASI INTERNASIONAL"</p>
+                <p class="font-bold text-[#e5bc98] tracking-wide">"LULUSANNYA MUDAH BEKERJA &amp; BERSERTIFIKASI INTERNASIONAL"</p>
               </div>
             </div>
 
-            <!-- Kolom Kanan: Form Login & Registrasi -->
+            <!-- Kolom Kanan: Form Login (Tanpa Default) & Registrasi (@gmail.com) -->
             <div class="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-center">
               <div>
+                <div class="mb-5">
+                  <span class="text-[10.5px] font-bold uppercase tracking-[0.24em] text-[#e5bc98]">Akses Akun Sivitas</span>
+                  <h2 class="font-serif-editorial text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-0.5">Masuk ke SIMLPPM</h2>
+                </div>
+
                 <div class="flex rounded-full editorial-subcard p-1.5 mb-7" role="tablist">
                   <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" role="tab" aria-selected="true" class="flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition btn-sand">
                     Masuk Sistem
@@ -533,12 +561,12 @@
                 <!-- FORM LOGIN (KOSONG, TANPA DEFAULT) -->
                 <form id="login-form" onsubmit="handleLoginSubmit(event)" autocomplete="off" class="space-y-5">
                   <div>
-                    <label for="login-username" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Username / Email (@gmail.com) / NIDN</label>
-                    <input type="text" id="login-username" required autocomplete="username" placeholder="Masukkan username, email @gmail.com, atau NIDN" value="" class="w-full px-4 py-3 text-sm" />
+                    <label for="login-username" class="block text-xs font-bold uppercase tracking-wider text-[#e5bc98] mb-1.5">Username / Email (@gmail.com) / NIDN</label>
+                    <input type="text" id="login-username" required autocomplete="username" placeholder="Masukkan username atau email @gmail.com" value="" class="w-full px-4 py-3 text-sm" />
                   </div>
 
                   <div>
-                    <label for="login-password" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Password</label>
+                    <label for="login-password" class="block text-xs font-bold uppercase tracking-wider text-[#e5bc98] mb-1.5">Password</label>
                     <div class="relative">
                       <input type="password" id="login-password" required autocomplete="current-password" placeholder="Masukkan password" value="" class="w-full px-4 py-3 pr-20 text-sm" />
                       <button type="button" onclick="togglePasswordInput('login-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#e5bc98] hover:underline px-2 py-1 cursor-pointer">
@@ -556,12 +584,12 @@
                 <!-- FORM REGISTRASI DOSEN BARU (WAJIB @gmail.com & ATOMIK KE SPREADSHEET) -->
                 <form id="register-form" onsubmit="handleRegisterSubmit(event)" class="space-y-4 hidden">
                   <div class="editorial-subcard p-3.5 text-xs text-[var(--text-secondary)] leading-relaxed">
-                    <strong class="text-[#e5bc98]">Informasi Registrasi:</strong> Wajib menggunakan alamat email <strong>@gmail.com</strong>. Akun baru berstatus <strong>"Menunggu Validasi"</strong> dan langsung masuk ke database Spreadsheet agar bisa divalidasi Admin di perangkat mana saja.
+                    <strong class="text-[#e5bc98]">Informasi Registrasi:</strong> Wajib menggunakan alamat email <strong>@gmail.com</strong>. Akun baru berstatus <strong>"Menunggu Validasi"</strong> dan langsung masuk ke database Google Sheets agar bisa divalidasi Admin di perangkat mana saja.
                   </div>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                      <label for="reg-name" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Nama Lengkap & Gelar *</label>
+                      <label for="reg-name" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Nama Lengkap &amp; Gelar *</label>
                       <input type="text" id="reg-name" required placeholder="Nama Dosen, M.Kom" class="w-full px-3.5 py-2.5 text-sm" />
                     </div>
                     <div>
@@ -617,7 +645,7 @@
                   <div class="flex items-center gap-2.5 flex-wrap">
                     <span id="welcome-role-pill" class="text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-[#e5bc98] text-[#162432]">KETUA LPPM</span>
                     <span class="text-xs text-[var(--text-muted)]">NIDN: <strong id="welcome-nidn" class="text-[var(--text-primary)]">-</strong></span>
-                    <span class="text-xs text-[var(--text-muted)]">• Prodi: <strong id="welcome-prodi" class="text-[var(--text-primary)]">-</strong></span>
+                    <span class="text-xs text-[var(--text-muted)]">&bull; Prodi: <strong id="welcome-prodi" class="text-[var(--text-primary)]">-</strong></span>
                   </div>
                   <h1 class="text-lg sm:text-2xl font-extrabold text-[var(--text-primary)]">
                     Selamat Datang, <span id="welcome-name" class="text-[#e5bc98]">-</span>
@@ -628,10 +656,6 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
-                  <button type="button" onclick="syncFromCloudManual()" class="btn-outline-sand text-xs px-3.5 py-2.5 flex items-center gap-1.5" title="Tarik data terbaru dari Google Sheets">
-                    <i class="ti ti-refresh text-base text-emerald-400"></i>
-                    <span>Sinkronkan</span>
-                  </button>
                   <button type="button" onclick="openLatestSignedLetter()" class="btn-sand text-xs px-4 py-2.5 flex items-center gap-1.5">
                     <i class="ti ti-eye text-base"></i>
                     <span>Pratinjau Surat Terbaru</span>
@@ -646,7 +670,7 @@
                   </button>
                   <button type="button" id="btn-upload-ttd-header" onclick="openSignatureModal()" class="hidden btn-outline-sand text-xs px-3.5 py-2.5 flex items-center gap-1.5">
                     <i class="ti ti-signature text-base text-amber-400"></i>
-                    <span>Scan TTD & Cap Basah</span>
+                    <span>Scan TTD &amp; Cap Basah</span>
                   </button>
                 </div>
               </div>
@@ -659,7 +683,7 @@
                     <div id="stat-total-surat" class="text-2xl font-extrabold text-[var(--text-primary)] mt-1">0</div>
                     <div id="stat-sub-surat" class="text-xs text-emerald-400 font-semibold mt-1">0 Tervalidasi TTD</div>
                   </div>
-                  <div class="w-11 h-11 rounded-xl bg-[#e5bc98]/15 text-[#e5bc98] flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-full bg-[#e5bc98]/15 text-[#e5bc98] flex items-center justify-center shrink-0">
                     <i class="ti ti-file-certificate text-2xl"></i>
                   </div>
                 </div>
@@ -668,9 +692,9 @@
                   <div>
                     <div class="text-xs font-semibold text-[var(--text-muted)]">Antrean Menunggu</div>
                     <div id="stat-pending-surat" class="text-2xl font-extrabold text-amber-400 mt-1">0</div>
-                    <div id="stat-pending-detail" class="text-xs text-[var(--text-muted)] mt-1">Surat, Karya & Akun</div>
+                    <div class="text-xs text-[var(--text-muted)] mt-1">Surat &amp; Karya Ilmiah</div>
                   </div>
-                  <div class="w-11 h-11 rounded-xl bg-amber-400/15 text-amber-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-full bg-amber-400/15 text-amber-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-clock-hour-4 text-2xl"></i>
                   </div>
                 </div>
@@ -679,9 +703,9 @@
                   <div>
                     <div class="text-xs font-semibold text-[var(--text-muted)]">Total Karya Ilmiah</div>
                     <div id="stat-total-karya" class="text-2xl font-extrabold text-[#e5bc98] mt-1">0</div>
-                    <div id="stat-sub-karya" class="text-xs text-[var(--text-muted)] mt-1">Proposal, Laporan & Luaran</div>
+                    <div id="stat-sub-karya" class="text-xs text-[var(--text-muted)] mt-1">Proposal, Laporan &amp; Luaran</div>
                   </div>
-                  <div class="w-11 h-11 rounded-xl bg-sky-400/15 text-sky-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-full bg-sky-400/15 text-sky-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-books text-2xl"></i>
                   </div>
                 </div>
@@ -692,7 +716,7 @@
                     <div id="stat-storage-mode" class="text-base font-extrabold text-emerald-400 mt-1.5">Google Sheets</div>
                     <div id="stat-storage-info" class="text-xs text-[var(--text-muted)] mt-1">Sinkron Lintas Browser</div>
                   </div>
-                  <div class="w-11 h-11 rounded-xl bg-emerald-400/15 text-emerald-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-full bg-emerald-400/15 text-emerald-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-cloud-check text-2xl"></i>
                   </div>
                 </div>
@@ -708,30 +732,30 @@
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 <button type="button" onclick="switchMainTab('surat-form')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-xl bg-[#e5bc98] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-plus text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-full bg-[#e5bc98] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-plus text-lg"></i></div>
                   <div>
                     <div class="text-xs font-bold text-[var(--text-primary)]">Ajukan Surat Resmi</div>
-                    <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Formulir ST & Kontrak</div>
+                    <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Formulir ST &amp; Kontrak</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('surat-list')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-xl bg-[#c88652] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-certificate text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-full bg-[#c88652] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-certificate text-lg"></i></div>
                   <div>
-                    <div class="text-xs font-bold text-[var(--text-primary)]">Antrean & Validasi TTD</div>
+                    <div class="text-xs font-bold text-[var(--text-primary)]">Antrean &amp; Validasi TTD</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Unduh PDF / Word Resmi</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('karya-form')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-xl bg-emerald-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-upload text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-full bg-emerald-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-upload text-lg"></i></div>
                   <div>
-                    <div class="text-xs font-bold text-[var(--text-primary)]">Unggah Proposal & Karya</div>
+                    <div class="text-xs font-bold text-[var(--text-primary)]">Unggah Proposal &amp; Karya</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Siklus 4 Tahap Penelitian</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('karya-list')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-xl bg-amber-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-books text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-full bg-amber-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-books text-lg"></i></div>
                   <div>
-                    <div class="text-xs font-bold text-[var(--text-primary)]">Repositori & Ekspor</div>
+                    <div class="text-xs font-bold text-[var(--text-primary)]">Repositori &amp; Ekspor</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Arsip, XLS, CSV, PDF</div>
                   </div>
                 </button>
@@ -745,7 +769,7 @@
               <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-6 border-b border-[var(--border-soft)]">
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Layanan Persuratan Resmi LPPM</span>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Formulir Pembuatan Surat Resmi & Kontrak Penelitian</h2>
+                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Formulir Pembuatan Surat Resmi &amp; Kontrak Penelitian</h2>
                   <p class="text-xs text-[var(--text-muted)] mt-1">Pilih jenis surat resmi IDE LPKIA Bandung dan lengkapi daftar tim pelaksana.</p>
                 </div>
                 <button type="button" onclick="switchMainTab('surat-list')" class="btn-outline-sand px-4 py-2 text-xs flex items-center gap-1.5">
@@ -761,7 +785,7 @@
                       <option value="Surat Tugas Penelitian">1) Surat Tugas Penelitian</option>
                       <option value="Surat Tugas Pengabdian kepada Masyarakat (PkM)">2) Surat Tugas Pengabdian kepada Masyarakat (PkM)</option>
                       <option value="Surat Tugas Narasumber / Pemateri Seminar / Workshop">3) Surat Tugas Narasumber / Pemateri Seminar / Workshop</option>
-                      <option value="Surat Tugas Publikasi Ilmiah & Konferensi">4) Surat Tugas Publikasi Ilmiah & Konferensi</option>
+                      <option value="Surat Tugas Publikasi Ilmiah & Konferensi">4) Surat Tugas Publikasi Ilmiah &amp; Konferensi</option>
                       <option value="Surat Tugas Penguji / Pembimbing Luar Kampus">5) Surat Tugas Penguji / Pembimbing Luar Kampus</option>
                       <option value="Surat Keterangan Selesai Penelitian / Pengabdian (SK)">6) Surat Keterangan Selesai Penelitian / Pengabdian (SK)</option>
                       <option value="Surat Perjanjian Kontrak Penelitian">7) Surat Perjanjian Kontrak Penelitian</option>
@@ -827,8 +851,8 @@
 
                 <div class="pt-5 border-t border-[var(--border-soft)] flex flex-wrap items-center justify-end gap-3">
                   <button type="button" onclick="resetFormSurat()" class="btn-outline-sand px-4 py-2.5 text-xs">Atur Ulang</button>
-                  <button type="submit" id="btn-submit-surat" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
-                    <i class="ti ti-send text-base"></i><span>Ajukan & Simpan Surat Resmi</span>
+                  <button type="submit" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
+                    <i class="ti ti-send text-base"></i><span>Ajukan &amp; Simpan Surat Resmi</span>
                   </button>
                 </div>
               </form>
@@ -840,9 +864,9 @@
             <div class="editorial-card p-6 space-y-5">
               <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div>
-                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Manajemen & Otorisasi Dokumen</span>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Antrean & Daftar Surat Resmi LPPM</h2>
-                  <p class="text-xs text-[var(--text-muted)] mt-1">Persetujuan surat, Upload TTD (Validasi Otomatis & Unduh PDF), serta ekspor dokumen Word (.DOC).</p>
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Manajemen &amp; Otorisasi Dokumen</span>
+                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Antrean &amp; Daftar Surat Resmi LPPM</h2>
+                  <p class="text-xs text-[var(--text-muted)] mt-1">Persetujuan surat, Upload TTD (Validasi Otomatis &amp; Unduh PDF), serta ekspor dokumen Word (.DOC).</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2.5">
                   <select id="filter-surat-status" onchange="renderSuratTable()" class="px-3 py-2 text-xs font-semibold">
@@ -856,7 +880,7 @@
                     <option value="Surat Tugas Penelitian">Surat Tugas Penelitian</option>
                     <option value="Surat Tugas Pengabdian kepada Masyarakat (PkM)">Surat Tugas PkM</option>
                     <option value="Surat Tugas Narasumber / Pemateri Seminar / Workshop">Narasumber / Pemateri</option>
-                    <option value="Surat Tugas Publikasi Ilmiah & Konferensi">Publikasi & Konferensi</option>
+                    <option value="Surat Tugas Publikasi Ilmiah & Konferensi">Publikasi &amp; Konferensi</option>
                     <option value="Surat Tugas Penguji / Pembimbing Luar Kampus">Penguji / Pembimbing</option>
                     <option value="Surat Keterangan Selesai Penelitian / Pengabdian (SK)">SK Selesai</option>
                     <option value="Surat Perjanjian Kontrak Penelitian">Kontrak Penelitian</option>
@@ -869,12 +893,12 @@
                 <table class="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr class="table-head-row font-bold uppercase">
-                      <th class="p-3.5">Nomor & Tanggal</th>
+                      <th class="p-3.5">Nomor &amp; Tanggal</th>
                       <th class="p-3.5">Jenis Surat</th>
                       <th class="p-3.5">Judul Kegiatan</th>
-                      <th class="p-3.5">Pemohon & Tim</th>
-                      <th class="p-3.5 text-center">Status & Catatan</th>
-                      <th class="p-3.5 text-center">Aksi & Validasi TTD</th>
+                      <th class="p-3.5">Pemohon &amp; Tim</th>
+                      <th class="p-3.5 text-center">Status &amp; Catatan</th>
+                      <th class="p-3.5 text-center">Aksi &amp; Validasi TTD</th>
                     </tr>
                   </thead>
                   <tbody id="surat-table-body"></tbody>
@@ -889,7 +913,7 @@
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Visualisasi Siklus Tridharma</span>
-                  <h2 class="text-base sm:text-lg font-extrabold text-[var(--text-primary)]">Alur Siklus Penelitian & Pengabdian kepada Masyarakat (4 Tahap)</h2>
+                  <h2 class="text-base sm:text-lg font-extrabold text-[var(--text-primary)]">Alur Siklus Penelitian &amp; Pengabdian kepada Masyarakat (4 Tahap)</h2>
                   <p class="text-xs text-[var(--text-muted)]">Klik salah satu kartu tahap untuk memilih tahapan dokumen yang akan diajukan secara otomatis.</p>
                 </div>
                 <span id="active-stage-badge" class="px-3 py-1 rounded-full bg-[#e5bc98]/20 text-[#e5bc98] text-xs font-bold">Tahap 01 Aktif</span>
@@ -905,8 +929,8 @@
                     <circle cx="122" cy="68" r="24" fill="#e5bc98" />
                     <text x="122" y="73" text-anchor="middle" fill="#162432" font-size="13" font-weight="800">01</text>
                     <text x="122" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Pengajuan Proposal</text>
-                    <text x="122" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Penelitian & PKM Baru</text>
-                    <text x="122" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">Usulan Awal & RAB</text>
+                    <text x="122" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Penelitian &amp; PKM Baru</text>
+                    <text x="122" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">Usulan Awal &amp; RAB</text>
                     <rect x="67" y="166" width="110" height="22" rx="11" fill="#e5bc98" fill-opacity="0.2" />
                     <text x="122" y="180" text-anchor="middle" fill="#e5bc98" font-size="10" font-weight="700">Pilih Tahap 01</text>
                   </g>
@@ -915,9 +939,9 @@
                     <rect id="svg-stage-box-2" x="253" y="16" width="215" height="188" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(229,188,152,0.25)" stroke-width="1.5" />
                     <circle cx="360" cy="68" r="24" fill="#c88652" />
                     <text x="360" y="73" text-anchor="middle" fill="#162432" font-size="13" font-weight="800">02</text>
-                    <text x="360" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Kontrak & Surat Tugas</text>
+                    <text x="360" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Kontrak &amp; Surat Tugas</text>
                     <text x="360" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Perjanjian Kontrak Penelitian</text>
-                    <text x="360" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">& Penugasan Resmi LPPM</text>
+                    <text x="360" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">&amp; Penugasan Resmi LPPM</text>
                     <rect x="305" y="166" width="110" height="22" rx="11" fill="#c88652" fill-opacity="0.2" />
                     <text x="360" y="180" text-anchor="middle" fill="#e5bc98" font-size="10" font-weight="700">Pilih Tahap 02</text>
                   </g>
@@ -927,7 +951,7 @@
                     <circle cx="598" cy="68" r="24" fill="#f59e0b" />
                     <text x="598" y="73" text-anchor="middle" fill="#162432" font-size="13" font-weight="800">03</text>
                     <text x="598" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Laporan Kemajuan</text>
-                    <text x="598" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Monitoring & Evaluasi</text>
+                    <text x="598" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Monitoring &amp; Evaluasi</text>
                     <text x="598" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">Capaian Progres Penelitian/PKM</text>
                     <rect x="543" y="166" width="110" height="22" rx="11" fill="#f59e0b" fill-opacity="0.2" />
                     <text x="598" y="180" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="700">Pilih Tahap 03</text>
@@ -937,7 +961,7 @@
                     <rect id="svg-stage-box-4" x="729" y="16" width="215" height="188" rx="14" fill="rgba(255,255,255,0.04)" stroke="rgba(229,188,152,0.25)" stroke-width="1.5" />
                     <circle cx="836" cy="68" r="24" fill="#34d399" />
                     <text x="836" y="73" text-anchor="middle" fill="#162432" font-size="13" font-weight="800">04</text>
-                    <text x="836" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Laporan Akhir & Luaran</text>
+                    <text x="836" y="114" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">Laporan Akhir &amp; Luaran</text>
                     <text x="836" y="132" text-anchor="middle" fill="currentColor" opacity="0.75" font-size="11">Lap. Akhir, SK Selesai,</text>
                     <text x="836" y="150" text-anchor="middle" fill="currentColor" opacity="0.7" font-size="10.5">Jurnal, Buku, Aplikasi, HAKI</text>
                     <rect x="781" y="166" width="110" height="22" rx="11" fill="#34d399" fill-opacity="0.2" />
@@ -949,7 +973,7 @@
 
             <div class="editorial-card p-6 sm:p-8">
               <div class="pb-4 mb-6 border-b border-[var(--border-soft)]">
-                <h3 class="text-lg font-extrabold text-[var(--text-primary)]">Formulir Pengajuan Proposal, Laporan & Karya Ilmiah Dosen</h3>
+                <h3 class="text-lg font-extrabold text-[var(--text-primary)]">Formulir Pengajuan Proposal, Laporan &amp; Karya Ilmiah Dosen</h3>
                 <p class="text-xs text-[var(--text-muted)] mt-1">Unggah berkas (maksimal 10 MB) dan lampirkan tautan repositori dokumen Anda.</p>
               </div>
 
@@ -958,10 +982,10 @@
                   <div>
                     <label for="karya-tahap" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tahap Siklus Penelitian / PKM *</label>
                     <select id="karya-tahap" required onchange="syncStageFromDropdown()" class="w-full px-3.5 py-2.5 text-sm font-bold">
-                      <option value="Tahap 01: Pengajuan Proposal Penelitian & PKM">Tahap 01: Pengajuan Proposal Penelitian & PKM</option>
-                      <option value="Tahap 02: Surat Perjanjian Kontrak & Surat Tugas">Tahap 02: Surat Perjanjian Kontrak & Surat Tugas</option>
-                      <option value="Tahap 03: Laporan Kemajuan Penelitian & PKM">Tahap 03: Laporan Kemajuan Penelitian & PKM</option>
-                      <option value="Tahap 04: Laporan Akhir, SK Selesai & Luaran Karya Ilmiah">Tahap 04: Laporan Akhir, SK Selesai & Luaran Karya Ilmiah</option>
+                      <option value="Tahap 01: Pengajuan Proposal Penelitian & PKM">Tahap 01: Pengajuan Proposal Penelitian &amp; PKM</option>
+                      <option value="Tahap 02: Surat Perjanjian Kontrak & Surat Tugas">Tahap 02: Surat Perjanjian Kontrak &amp; Surat Tugas</option>
+                      <option value="Tahap 03: Laporan Kemajuan Penelitian & PKM">Tahap 03: Laporan Kemajuan Penelitian &amp; PKM</option>
+                      <option value="Tahap 04: Laporan Akhir, SK Selesai & Luaran Karya Ilmiah">Tahap 04: Laporan Akhir, SK Selesai &amp; Luaran Karya Ilmiah</option>
                     </select>
                   </div>
                   <div>
@@ -998,24 +1022,24 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label for="karya-gdrive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder / Berkas Repositori Dosen *</label>
-                    <input type="url" id="karya-gdrive" required placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3.5 py-2.5 text-sm" />
+                    <label for="karya-gdrive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Google Drive (Otomatis terisi jika unggah file)</label>
+                    <input type="url" id="karya-gdrive" placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3.5 py-2.5 text-sm" />
                   </div>
                   <div>
-                    <label for="karya-file" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Unggah Lampiran Dokumen PDF/DOCX (Maks. 10 MB)</label>
+                    <label for="karya-file" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Unggah Lampiran ke Google Drive Otomatis (PDF/DOCX, Maks. 10 MB)</label>
                     <input type="file" id="karya-file" accept=".pdf,.doc,.docx,.zip" class="w-full border border-[var(--border-soft)] bg-[var(--bg-input)] px-3 py-2 text-xs rounded-xl file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#e5bc98] file:text-[#162432]" />
                   </div>
                 </div>
 
                 <div>
-                  <label for="karya-ringkasan" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Abstrak / Deskripsi Singkat & Mitra</label>
+                  <label for="karya-ringkasan" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Abstrak / Deskripsi Singkat &amp; Mitra</label>
                   <textarea id="karya-ringkasan" rows="3" placeholder="Tuliskan abstrak singkat, nama jurnal/penerbit, nomor HAKI, atau keterangan mitra..." class="w-full px-3.5 py-2.5 text-sm"></textarea>
                 </div>
 
                 <div class="pt-4 border-t border-[var(--border-soft)] flex justify-end gap-3">
                   <button type="reset" class="btn-outline-sand px-4 py-2.5 text-xs">Reset</button>
                   <button type="submit" id="btn-submit-karya" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
-                    <i class="ti ti-cloud-upload text-base"></i><span>Kirim Pengajuan Proposal / Karya</span>
+                    <i class="ti ti-cloud-upload text-base"></i><span>Kirim &amp; Unggah ke Google Drive</span>
                   </button>
                 </div>
               </form>
@@ -1028,7 +1052,7 @@
               <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Repositori Tridharma Dosen</span>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Pengajuan Karya Ilmiah & Dokumen Wajib Dosen</h2>
+                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Pengajuan Karya Ilmiah &amp; Dokumen Wajib Dosen</h2>
                   <p class="text-xs text-[var(--text-muted)] mt-1">Kelola arsip dosen, unduhan lampiran, serta ekspor laporan .XLS, .CSV, dan Rekap PDF ber-Kop LPKIA.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
@@ -1042,9 +1066,9 @@
                 <select id="filter-karya-tahap" onchange="renderKaryaTable()" class="px-3 py-2 text-xs font-semibold">
                   <option value="ALL">Semua Tahap Siklus</option>
                   <option value="Tahap 01">Tahap 01: Proposal</option>
-                  <option value="Tahap 02">Tahap 02: Kontrak & ST</option>
+                  <option value="Tahap 02">Tahap 02: Kontrak &amp; ST</option>
                   <option value="Tahap 03">Tahap 03: Laporan Kemajuan</option>
-                  <option value="Tahap 04">Tahap 04: Laporan Akhir & Luaran</option>
+                  <option value="Tahap 04">Tahap 04: Laporan Akhir &amp; Luaran</option>
                 </select>
                 <input type="text" id="search-karya-input" oninput="renderKaryaTable()" placeholder="Cari judul karya, dosen, prodi..." class="px-3.5 py-2 text-xs w-60" />
               </div>
@@ -1053,11 +1077,11 @@
                 <table class="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr class="table-head-row font-bold uppercase">
-                      <th class="p-3.5">Judul Karya & Jenis</th>
-                      <th class="p-3.5">Dosen & Prodi</th>
+                      <th class="p-3.5">Judul Karya &amp; Jenis</th>
+                      <th class="p-3.5">Dosen &amp; Prodi</th>
                       <th class="p-3.5">Tahap Siklus</th>
-                      <th class="p-3.5 text-center">Status & Catatan</th>
-                      <th class="p-3.5 text-center">Tautan & Aksi</th>
+                      <th class="p-3.5 text-center">Status &amp; Catatan</th>
+                      <th class="p-3.5 text-center">Tautan &amp; Aksi</th>
                     </tr>
                   </thead>
                   <tbody id="karya-table-body"></tbody>
@@ -1071,16 +1095,16 @@
             <div class="editorial-card p-6 space-y-5">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Otoritas Admin & Ketua LPPM</span>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Akun Pengguna & Validasi Pendaftaran Dosen</h2>
-                  <p class="text-xs text-[var(--text-muted)] mt-1">Validasi, edit sandi, atau hapus akun dosen langsung tersinkron atomik ke Google Sheets lintas browser & perangkat.</p>
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Otoritas Admin &amp; Ketua LPPM</span>
+                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Akun Pengguna &amp; Validasi Pendaftaran Dosen</h2>
+                  <p class="text-xs text-[var(--text-muted)] mt-1">Setiap pendaftaran, validasi, dan perubahan sandi langsung tercatat secara atomik di Google Sheets lintas browser &amp; perangkat.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                   <button type="button" onclick="syncFromCloudManual()" class="btn-outline-sand px-3.5 py-2 text-xs flex items-center gap-1.5">
                     <i class="ti ti-refresh text-base text-emerald-400"></i><span>Muat Ulang dari Spreadsheet</span>
                   </button>
                   <button type="button" onclick="openSignatureModal()" class="btn-sand px-4 py-2 text-xs flex items-center gap-1.5">
-                    <i class="ti ti-signature text-base"></i><span>Scan TTD & Cap Basah</span>
+                    <i class="ti ti-signature text-base"></i><span>Scan TTD &amp; Cap Basah</span>
                   </button>
                 </div>
               </div>
@@ -1104,11 +1128,11 @@
                     <tr class="table-head-row font-bold uppercase">
                       <th class="p-3.5">Nama Lengkap</th>
                       <th class="p-3.5">NIDN / NIP</th>
-                      <th class="p-3.5">Email (@gmail.com) & Prodi</th>
+                      <th class="p-3.5">Email (@gmail.com) &amp; Prodi</th>
                       <th class="p-3.5">Peran (RBAC)</th>
                       <th class="p-3.5 text-center">Status Validasi</th>
                       <th class="p-3.5">Tanggal Validasi</th>
-                      <th class="p-3.5 text-center">Tindakan & Kelola</th>
+                      <th class="p-3.5 text-center">Tindakan &amp; Edit Sandi</th>
                     </tr>
                   </thead>
                   <tbody id="akun-table-body"></tbody>
@@ -1122,8 +1146,8 @@
             <div class="editorial-card p-6 space-y-5">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Keamanan & Kepatuhan Sistem</span>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Log Aktivitas & Audit Trail SIMLPPM</h2>
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Keamanan &amp; Kepatuhan Sistem</span>
+                  <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Log Aktivitas &amp; Audit Trail SIMLPPM</h2>
                   <p class="text-xs text-[var(--text-muted)] mt-1">Rekam jejak seluruh aktivitas otentikasi, pengajuan surat, validasi TTD, unggah karya, dan perubahan akun.</p>
                 </div>
                 <button type="button" id="btn-clear-logs" onclick="handleClearLogsClick()" class="bg-red-500/15 text-red-300 border border-red-400/30 hover:bg-red-500/25 px-3.5 py-2 rounded-full text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
@@ -1136,7 +1160,7 @@
                   <thead>
                     <tr class="table-head-row font-bold uppercase">
                       <th class="p-3.5">Waktu Kejadian</th>
-                      <th class="p-3.5">Aktor & Peran</th>
+                      <th class="p-3.5">Aktor &amp; Peran</th>
                       <th class="p-3.5">Kategori Aksi</th>
                       <th class="p-3.5">Detail Aktivitas</th>
                     </tr>
@@ -1153,10 +1177,10 @@
       <footer class="editorial-header mt-auto border-t border-[var(--border-soft)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[var(--text-muted)]">
           <div>
-            <strong class="text-[var(--text-primary)]">LPPM Institut Digital Ekonomi (IDE) LPKIA Bandung</strong> — created by Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)
+            <strong class="text-[var(--text-primary)]">LPPM Institut Digital Ekonomi (IDE) LPKIA Bandung</strong> &mdash; created by Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)
           </div>
           <div class="font-bold text-[#e5bc98] text-center sm:text-right">
-            "LULUSANNYA MUDAH BEKERJA & BERSERTIFIKASI INTERNASIONAL"
+            "LULUSANNYA MUDAH BEKERJA &amp; BERSERTIFIKASI INTERNASIONAL"
           </div>
         </div>
       </footer>
@@ -1169,7 +1193,7 @@
       <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--border-soft)]">
         <div>
           <h3 class="text-base font-extrabold text-[var(--text-primary)]">Pratinjau Dokumen Resmi LPPM IDE LPKIA Bandung</h3>
-          <p class="text-xs text-[var(--text-muted)]" id="preview-modal-subtitle">Standar Format Kop Surat & Pengesahan Ketua LPPM</p>
+          <p class="text-xs text-[var(--text-muted)]" id="preview-modal-subtitle">Standar Format Kop Surat &amp; Pengesahan Ketua LPPM</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" onclick="downloadActivePreviewSurat('doc')" class="btn-outline-sand px-3.5 py-2 text-xs flex items-center gap-1.5"><i class="ti ti-file-description text-base"></i><span>Unduh .DOC</span></button>
@@ -1213,11 +1237,11 @@
   <div id="modal-signature" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="editorial-modal rounded-2xl max-w-md w-full p-6 space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-[var(--border-soft)]">
-        <h3 class="text-base font-extrabold text-[var(--text-primary)]">Scan TTD & Cap Basah Ketua LPPM</h3>
+        <h3 class="text-base font-extrabold text-[var(--text-primary)]">Scan TTD &amp; Cap Basah Ketua LPPM</h3>
         <button type="button" onclick="closeModal('modal-signature')" class="text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"><i class="ti ti-x text-lg"></i></button>
       </div>
       <p class="text-xs text-[var(--text-secondary)] leading-relaxed">
-        Unggah gambar scan tanda tangan & cap basah <strong>Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</strong>.
+        Unggah gambar scan tanda tangan &amp; cap basah <strong>Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</strong>.
       </p>
       <div class="border-2 border-dashed border-[var(--border-strong)] rounded-xl p-4 bg-white flex flex-col items-center justify-center min-h-[120px]">
         <img id="signature-preview-img" src="" alt="Pratinjau TTD Ketua LPPM" class="max-h-24 hidden object-contain" />
@@ -1237,14 +1261,14 @@
   <div id="modal-edit-akun" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="editorial-modal rounded-2xl max-w-lg w-full p-6 space-y-4">
       <div class="flex items-center justify-between pb-3 border-b border-[var(--border-soft)]">
-        <h3 class="text-base font-extrabold text-[var(--text-primary)]">Edit Data Akun & Kata Sandi Pengguna</h3>
+        <h3 class="text-base font-extrabold text-[var(--text-primary)]">Edit Data Akun &amp; Kata Sandi Pengguna</h3>
         <button type="button" onclick="closeModal('modal-edit-akun')" class="text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"><i class="ti ti-x text-lg"></i></button>
       </div>
       <form onsubmit="handleEditAkunSubmit(event)" class="space-y-4">
         <input type="hidden" id="edit-akun-id" />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label for="edit-akun-name" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Nama Lengkap & Gelar *</label>
+            <label for="edit-akun-name" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Nama Lengkap &amp; Gelar *</label>
             <input type="text" id="edit-akun-name" required class="w-full px-3.5 py-2 text-sm" />
           </div>
           <div>
@@ -1301,7 +1325,7 @@
     </div>
   </div>
 
-  <!-- ================= SCRIPT INTI SIMLPPM v5.4 (ATOMIK LINTAS DEVICE & AMAN GAS/GITHUB) ================= -->
+  <!-- ================= SCRIPT INTI SIMLPPM (ATOMIK LINTAS DEVICE & AMAN GAS/GITHUB) ================= -->
   <script>
     const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbxhX0r9s7axOAWMlOeXopj6bvmutS4E3qTLcB4U9B3ZXIhT2MdJYYAhV_Fszl_yW_Oo/exec';
     const THEME_PREF_KEY = 'SIMLPPM_EDITORIAL_THEME';
@@ -1332,8 +1356,6 @@
        ========================================================================== */
     let cloudHydrated = false;
     let cloudSaveQueue = Promise.resolve({ ok: true });
-    let pendingDeleteKey = null;
-    let pendingDeleteTimer = null;
 
     function withTimeout(promise, ms) {
       return Promise.race([
@@ -1387,7 +1409,7 @@
               const text = await resp.text();
               const data = JSON.parse(text);
               if (!data || !Array.isArray(data.users)) {
-                throw new Error('Respon Apps Script bukan JSON database.');
+                throw new Error('Respon Apps Script bukan JSON database. Pastikan Code.gs sudah Deploy New version & akses Anyone.');
               }
               cloudHydrated = true;
               this.updateStatusBadge('Spreadsheet Aktif', true);
@@ -1419,9 +1441,10 @@
             if (action === 'registerUser') runner.apiRegisterUser(payload.user);
             else if (action === 'updateUser') runner.apiUpdateUser(payload.user, payload.actor);
             else if (action === 'deleteUser') runner.apiDeleteUser(payload.userId, payload.actor);
+            else if (action === 'uploadKarya') runner.apiUploadKaryaWithFile(payload.karya, payload.file);
             else if (action === 'appendLog') runner.apiAppendLog(payload.log);
             else runner.apiSaveAppState(payload);
-          }), 20000);
+          }), 25000);
         }
 
         if (this.hasRemoteAPI()) {
@@ -1444,7 +1467,7 @@
               this.updateStatusBadge('Gagal Simpan Cloud', false);
               return { ok: false, error: err.message };
             }
-          })(), 20000);
+          })(), 25000);
         }
         return { ok: false, error: 'URL Apps Script tidak aktif.' };
       },
@@ -1467,11 +1490,11 @@
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
       return String(str)
-        .replace(/&/g, '&')
-        .replace(/\x3C/g, '<')
-        .replace(/>/g, '>')
-        .replace(/"/g, '"')
-        .replace(/'/g, ''');
+        .replace(/&/g, '&amp;')
+        .replace(/\x3C/g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     }
 
     function isValidGmail(email) {
@@ -1565,7 +1588,7 @@
         { id: 'auth-logo-holder', size: 48 }
       ].forEach((item) => {
         const el = document.getElementById(item.id);
-        if (el) {
+        if (el && !el.querySelector('svg')) {
           el.innerHTML = '';
           const c = renderLPKIALogoCanvas(item.size);
           c.className = 'w-full h-full object-contain';
@@ -1713,6 +1736,30 @@
       if (appState.users.length === 0) {
         initializeDefaultSeed();
       }
+      ensureDefaultManagersPresent();
+    }
+
+    function ensureDefaultManagersPresent() {
+      const defaults = [
+        {
+          id: 'USR-001', name: 'Dayanni Vera Versanika., M.Kom', nidn: '0424099204',
+          email: 'dayanniveraversanika@gmail.com', prodi: 'Teknik Informatika', role: 'Ketua LPPM',
+          status: 'Disetujui', validatedAt: '10 November 2026, 08:00 WIB',
+          validatedBy: 'Sistem Otoritas LPPM', driveUrl: 'https://drive.google.com/',
+          passwordHash: safeEncodePass('lpkia123')
+        },
+        {
+          id: 'USR-002', name: 'Admin Sekretariat LPPM', nidn: '0411089001',
+          email: 'admin.lppmlpkia@gmail.com', prodi: 'Sistem Informasi', role: 'Admin',
+          status: 'Disetujui', validatedAt: '10 November 2026, 08:05 WIB',
+          validatedBy: 'Dayanni Vera Versanika., M.Kom', driveUrl: 'https://drive.google.com/',
+          passwordHash: safeEncodePass('lpkia123')
+        }
+      ];
+      defaults.forEach((def) => {
+        const exists = appState.users.some((u) => (u.email || '').toLowerCase() === def.email);
+        if (!exists) appState.users.unshift(def);
+      });
     }
 
     function saveLocalOnly() {
@@ -1743,7 +1790,7 @@
       saveLocalOnly();
       const res = await GASBridge.saveCloudState(appState);
       if (!res || !res.ok) {
-        showToast('Gagal sinkron ke Google Sheets: ' + ((res && res.error) || 'Periksa deploy Code.gs.'), 'error');
+        showToast('Gagal sinkron ke Google Sheets: ' + ((res && res.error) || 'Periksa deploy Code.gs (New version & Anyone).'), 'error');
         return false;
       }
       return true;
@@ -1758,7 +1805,8 @@
         appState.logs = Array.isArray(cloudData.logs) ? cloudData.logs : [];
         appState.defaultSignature = cloudData.defaultSignature || null;
 
-        const migrated = migrateEmailsToGmail();
+        ensureDefaultManagersPresent();
+        const migrated = migrateLegacyEmailsToGmail();
         saveLocalOnly();
         if (migrated) await GASBridge.saveCloudState(appState);
 
@@ -1766,7 +1814,6 @@
           const freshUser = appState.users.find((u) => u.id === appState.currentUser.id);
           if (freshUser) appState.currentUser = freshUser;
         }
-        updateSidebarBadges();
         if (showNotif) showToast('Data berhasil dimuat dari Spreadsheet (' + appState.users.length + ' akun).', 'success');
         return true;
       }
@@ -1784,24 +1831,7 @@
         renderKaryaTable();
         renderLogsTable();
         updateDashboardStats();
-        renderDashboardVisuals();
       }
-    }
-
-    function updateSidebarBadges() {
-      const pendingAkun = appState.users.filter((u) => u.status === 'Menunggu Validasi').length;
-      const pendingSurat = getVisibleSuratList().filter((s) => s.status === 'Menunggu Persetujuan').length;
-      const pendingKarya = getVisibleKaryaList().filter((k) => k.status === 'Menunggu Persetujuan').length;
-
-      const setBadge = (id, count) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.textContent = String(count);
-        el.classList.toggle('hidden', count === 0);
-      };
-      setBadge('badge-pending-akun', pendingAkun);
-      setBadge('badge-pending-surat', pendingSurat);
-      setBadge('badge-pending-karya', pendingKarya);
     }
 
     /* ==========================================================================
@@ -1863,18 +1893,22 @@
     }
 
     async function handleLoginSubmit(event) {
-      event.preventDefault();
+      if (event && event.preventDefault) event.preventDefault();
       const btn = document.getElementById('btn-login-submit');
       if (btn) { btn.disabled = true; btn.textContent = 'Memeriksa Database...'; }
 
       try {
-        await hydrateFromCloud(false);
+        try {
+          await hydrateFromCloud(false);
+        } catch (syncErr) {}
+
         if (!Array.isArray(appState.users) || appState.users.length === 0) {
           initializeDefaultSeed();
         }
+        ensureDefaultManagersPresent();
 
-        const identifier = document.getElementById('login-username').value.trim().toLowerCase();
-        const password = document.getElementById('login-password').value;
+        const identifier = (document.getElementById('login-username')?.value || '').trim().toLowerCase();
+        const password = document.getElementById('login-password')?.value || '';
 
         const user = appState.users.find((u) => {
           const email = (u.email || '').toLowerCase();
@@ -1884,7 +1918,7 @@
           return email === identifier || emailPrefix === identifier || nidn === identifier || name === identifier;
         });
 
-        if (!user) { showToast('Akun tidak ditemukan di Spreadsheet. Periksa email @gmail.com atau NIDN Anda.', 'error'); return; }
+        if (!user) { showToast('Akun tidak ditemukan. Periksa email @gmail.com atau NIDN Anda.', 'error'); return; }
         if (safeDecodePass(user.passwordHash) !== password) { showToast('Password yang Anda masukkan tidak sesuai.', 'error'); return; }
         if (user.status === 'Menunggu Validasi') { showToast('Akun Anda masih berstatus "Menunggu Validasi" oleh Admin / Ketua LPPM.', 'warning'); return; }
         if (user.status === 'Ditolak') { showToast('Permohonan akun Anda ditolak. Silakan hubungi sekretariat LPPM.', 'error'); return; }
@@ -1904,8 +1938,11 @@
         });
 
         showToast('Selamat datang kembali, ' + user.name + '!', 'success');
-        document.getElementById('login-form').reset();
+        const loginFormEl = document.getElementById('login-form');
+        if (loginFormEl) loginFormEl.reset();
         enterAuthenticatedApp();
+      } catch (err) {
+        showToast('Kendala saat masuk ke dashboard: ' + (err.message || err), 'error');
       } finally {
         if (btn) {
           btn.disabled = false;
@@ -1942,7 +1979,7 @@
 
         const res = await GASBridge.sendAction('registerUser', { user: newUser });
         if (!res || !res.ok) {
-          showToast('Gagal menyimpan ke Google Sheets: ' + ((res && res.error) || 'Periksa koneksi atau deploy Code.gs.'), 'error');
+          showToast('Gagal menyimpan ke Google Sheets: ' + ((res && res.error) || 'Periksa koneksi atau deploy Code.gs (New version & Anyone).'), 'error');
           return;
         }
 
@@ -2016,27 +2053,42 @@
     function enterAuthenticatedApp() {
       const user = appState.currentUser;
       if (!user) return;
-      document.getElementById('auth-view').classList.add('hidden');
-      document.getElementById('app-view').classList.remove('hidden');
-      document.getElementById('application-sidebar').classList.remove('hidden');
-      document.getElementById('application-sidebar').classList.add('flex');
-      document.getElementById('navbar-user-panel').classList.remove('hidden');
-      document.getElementById('navbar-user-panel').classList.add('flex');
-      document.getElementById('mobile-sidebar-toggle').classList.remove('hidden');
-      document.getElementById('mobile-sidebar-toggle').classList.add('flex');
 
-      document.getElementById('nav-user-name').textContent = user.name;
-      document.getElementById('nav-user-role-badge').textContent = user.role;
-      document.getElementById('nav-user-email').textContent = user.email;
-      document.getElementById('welcome-role-pill').textContent = user.role.toUpperCase();
-      document.getElementById('welcome-nidn').textContent = user.nidn || '-';
-      document.getElementById('welcome-prodi').textContent = user.prodi || '-';
-      document.getElementById('welcome-name').textContent = user.name;
+      const showEl = (id, displayClass) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('hidden');
+        if (displayClass) el.classList.add(displayClass);
+      };
+      const hideEl = (id, removeClass) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('hidden');
+        if (removeClass) el.classList.remove(removeClass);
+      };
+      const setText = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      hideEl('auth-view');
+      showEl('app-view');
+      showEl('application-sidebar', 'flex');
+      showEl('navbar-user-panel', 'flex');
+      showEl('mobile-sidebar-toggle', 'flex');
+
+      setText('nav-user-name', user.name);
+      setText('nav-user-role-badge', user.role);
+      setText('nav-user-email', user.email);
+      setText('welcome-role-pill', (user.role || 'DOSEN').toUpperCase());
+      setText('welcome-nidn', user.nidn || '-');
+      setText('welcome-prodi', user.prodi || '-');
+      setText('welcome-name', user.name);
 
       const isManager = isManagerRole();
-      document.getElementById('welcome-subtitle').textContent = isManager
+      setText('welcome-subtitle', isManager
         ? 'Panel kendali penuh Manajemen Surat Resmi IDE LPKIA, Pengajuan Karya Ilmiah Dosen, Validasi TTD, dan Otorisasi Akun.'
-        : 'Portal Dosen IDE LPKIA Bandung untuk pengajuan Surat Tugas, Kontrak Penelitian, dan Repositori Karya Ilmiah.';
+        : 'Portal Dosen IDE LPKIA Bandung untuk pengajuan Surat Tugas, Kontrak Penelitian, dan Repositori Karya Ilmiah.');
 
       document.querySelectorAll('.admin-only-menu').forEach((el) => el.classList.toggle('hidden', !isManager));
       const btnTtdHeader = document.getElementById('btn-upload-ttd-header');
@@ -2048,9 +2100,9 @@
       const karyaDriveEl = document.getElementById('karya-gdrive');
       if (karyaDriveEl && user.driveUrl) karyaDriveEl.value = user.driveUrl;
 
-      updateSidebarBadges();
       startSessionTimer();
       switchMainTab('dashboard');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     /* ==========================================================================
@@ -2072,17 +2124,17 @@
       else if (tabName === 'surat-list') {
         renderSuratTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) { renderSuratTable(); updateDashboardStats(); }
+        if (ok) renderSuratTable();
       }
       else if (tabName === 'karya-list') {
         renderKaryaTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) { renderKaryaTable(); updateDashboardStats(); }
+        if (ok) renderKaryaTable();
       }
       else if (tabName === 'akun') {
         renderAkunTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) { renderAkunTable(); updateDashboardStats(); }
+        if (ok) renderAkunTable();
       }
       else if (tabName === 'logs') {
         renderLogsTable();
@@ -2095,13 +2147,11 @@
        DASHBOARD & VISUALISASI
        ========================================================================== */
     function getVisibleSuratList() {
-      if (!appState.currentUser) return [];
       if (isManagerRole()) return appState.suratList;
       return appState.suratList.filter((s) => s.pemohonEmail === appState.currentUser.email);
     }
 
     function getVisibleKaryaList() {
-      if (!appState.currentUser) return [];
       if (isManagerRole()) return appState.karyaList;
       return appState.karyaList.filter((k) => k.dosenEmail === appState.currentUser.email);
     }
@@ -2112,21 +2162,13 @@
       const validSurat = surat.filter((s) => s.status === 'Tervalidasi').length;
       const pendingSurat = surat.filter((s) => s.status === 'Menunggu Persetujuan').length;
       const pendingKarya = karya.filter((k) => k.status === 'Menunggu Persetujuan').length;
-      const pendingAkun = isManagerRole() ? appState.users.filter((u) => u.status === 'Menunggu Validasi').length : 0;
 
       document.getElementById('stat-total-surat').textContent = surat.length;
       document.getElementById('stat-sub-surat').textContent = validSurat + ' Tervalidasi TTD';
-      document.getElementById('stat-pending-surat').textContent = pendingSurat + pendingKarya + pendingAkun;
-      const detailEl = document.getElementById('stat-pending-detail');
-      if (detailEl) {
-        detailEl.textContent = isManagerRole()
-          ? (pendingAkun + ' Akun, ' + pendingSurat + ' Surat, ' + pendingKarya + ' Karya')
-          : (pendingSurat + ' Surat & ' + pendingKarya + ' Karya');
-      }
+      document.getElementById('stat-pending-surat').textContent = pendingSurat + pendingKarya;
       document.getElementById('stat-total-karya').textContent = karya.length;
       document.getElementById('stat-sub-karya').textContent = karya.filter((k) => k.status === 'Tervalidasi').length + ' Terverifikasi';
       document.getElementById('stat-storage-info').textContent = appState.users.length + ' Akun & ' + (surat.length + karya.length) + ' Arsip';
-      updateSidebarBadges();
     }
 
     function renderDashboardVisuals() {
@@ -2224,7 +2266,7 @@
     }
 
     /* ==========================================================================
-       SURAT RESMI, PESERTA DINAMIS, HAPUS & UPLOAD TTD
+       SURAT RESMI, PESERTA DINAMIS & UPLOAD TTD
        ========================================================================== */
     function generateAutoNomorSurat() {
       const tpl = document.getElementById('surat-template').value;
@@ -2264,7 +2306,7 @@
       const row = document.createElement('div');
       row.className = 'tim-row grid grid-cols-1 sm:grid-cols-12 gap-2.5 p-3 editorial-subcard items-center';
       row.innerHTML = [
-        '\x3Cdiv class="sm:col-span-4">\x3Clabel class="block text-[10px] font-bold text-[var(--text-muted)] uppercase mb-1">Nama Lengkap & Gelar *\x3C/label>\x3Cinput type="text" required value="' + escapeHtml(defaultNama) + '" placeholder="Nama Dosen + Gelar" class="peserta-nama w-full px-3 py-2 text-xs font-semibold" />\x3C/div>',
+        '\x3Cdiv class="sm:col-span-4">\x3Clabel class="block text-[10px] font-bold text-[var(--text-muted)] uppercase mb-1">Nama Lengkap &amp; Gelar *\x3C/label>\x3Cinput type="text" required value="' + escapeHtml(defaultNama) + '" placeholder="Nama Dosen + Gelar" class="peserta-nama w-full px-3 py-2 text-xs font-semibold" />\x3C/div>',
         '\x3Cdiv class="sm:col-span-2">\x3Clabel class="block text-[10px] font-bold text-[var(--text-muted)] uppercase mb-1">NIDN / NIP *\x3C/label>\x3Cinput type="text" required value="' + escapeHtml(defaultNidn) + '" placeholder="04xxxxxxxx" class="peserta-nidn w-full px-3 py-2 text-xs" />\x3C/div>',
         '\x3Cdiv class="sm:col-span-3">\x3Clabel class="block text-[10px] font-bold text-[var(--text-muted)] uppercase mb-1">Jabatan dalam Tim *\x3C/label>\x3Cinput type="text" required value="' + escapeHtml(defaultJabatan) + '" placeholder="Ketua / Anggota / Narasumber" class="peserta-jabatan w-full px-3 py-2 text-xs" />\x3C/div>',
         '\x3Cdiv class="sm:col-span-2">\x3Clabel class="block text-[10px] font-bold text-[var(--text-muted)] uppercase mb-1">Program Studi *\x3C/label>\x3Cselect required class="peserta-prodi w-full px-2.5 py-2 text-xs font-semibold">',
@@ -2301,52 +2343,38 @@
 
     async function handleCreateSuratSubmit(event) {
       event.preventDefault();
-      const btn = document.getElementById('btn-submit-surat');
-      if (btn) { btn.disabled = true; btn.textContent = 'Menyimpan ke Spreadsheet...'; }
-
-      try {
-        const peserta = [];
-        document.querySelectorAll('#tim-pelaksana-list .tim-row').forEach((r) => {
-          peserta.push({
-            nama: r.querySelector('.peserta-nama').value.trim(),
-            nidn: r.querySelector('.peserta-nidn').value.trim(),
-            jabatan: r.querySelector('.peserta-jabatan').value.trim(),
-            prodi: r.querySelector('.peserta-prodi').value
-          });
+      const peserta = [];
+      document.querySelectorAll('#tim-pelaksana-list .tim-row').forEach((r) => {
+        peserta.push({
+          nama: r.querySelector('.peserta-nama').value.trim(),
+          nidn: r.querySelector('.peserta-nidn').value.trim(),
+          jabatan: r.querySelector('.peserta-jabatan').value.trim(),
+          prodi: r.querySelector('.peserta-prodi').value
         });
+      });
 
-        const jenis = document.getElementById('surat-template').value;
-        const nomor = document.getElementById('surat-nomor').value.trim();
-        const judul = document.getElementById('surat-judul').value.trim();
-        const newSurat = {
-          id: 'SRT-' + Date.now(), nomor: nomor, jenis: jenis,
-          tanggal: document.getElementById('surat-tanggal').value,
-          periode: document.getElementById('surat-periode').value.trim(),
-          lokasi: document.getElementById('surat-lokasi').value.trim(),
-          judul: judul, dasar: document.getElementById('surat-dasar').value.trim(),
-          dana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-dana').value.trim() : '',
-          sumberDana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-sumber-dana').value.trim() : '',
-          pemohonName: appState.currentUser.name, pemohonEmail: appState.currentUser.email,
-          peserta: peserta, status: 'Menunggu Persetujuan',
-          catatan: 'Diajukan oleh dosen, menunggu verifikasi & TTD Ketua LPPM.',
-          validatedBy: '', signatureData: null, createdAt: new Date().toLocaleString('id-ID')
-        };
+      const jenis = document.getElementById('surat-template').value;
+      const nomor = document.getElementById('surat-nomor').value.trim();
+      const judul = document.getElementById('surat-judul').value.trim();
 
-        // Tarik data terbaru dari Spreadsheet dulu agar pengajuan perangkat lain tidak tertimpa
-        await hydrateFromCloud(false);
-        appState.suratList.unshift(newSurat);
+      appState.suratList.unshift({
+        id: 'SRT-' + Date.now(), nomor: nomor, jenis: jenis,
+        tanggal: document.getElementById('surat-tanggal').value,
+        periode: document.getElementById('surat-periode').value.trim(),
+        lokasi: document.getElementById('surat-lokasi').value.trim(),
+        judul: judul, dasar: document.getElementById('surat-dasar').value.trim(),
+        dana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-dana').value.trim() : '',
+        sumberDana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-sumber-dana').value.trim() : '',
+        pemohonName: appState.currentUser.name, pemohonEmail: appState.currentUser.email,
+        peserta: peserta, status: 'Menunggu Persetujuan',
+        catatan: 'Diajukan oleh dosen, menunggu verifikasi & TTD Ketua LPPM.',
+        validatedBy: '', signatureData: null, createdAt: new Date().toLocaleString('id-ID')
+      });
 
-        const ok = await saveAndSyncCloud('Pengajuan Surat Resmi', 'Mengajukan ' + jenis + ' (' + nomor + ') berjudul "' + judul + '".');
-        if (ok) showToast('Surat resmi berhasil diajukan & tersimpan di Google Sheets.', 'success');
-        resetFormSurat();
-        updateDashboardStats();
-        switchMainTab('surat-list');
-      } finally {
-        if (btn) {
-          btn.disabled = false;
-          btn.innerHTML = '\x3Ci class="ti ti-send text-base">\x3C/i>\x3Cspan>Ajukan & Simpan Surat Resmi\x3C/span>';
-        }
-      }
+      const ok = await saveAndSyncCloud('Pengajuan Surat Resmi', 'Mengajukan ' + jenis + ' (' + nomor + ') berjudul "' + judul + '".');
+      if (ok) showToast('Surat resmi berhasil diajukan & tersimpan di Google Sheets.', 'success');
+      resetFormSurat();
+      switchMainTab('surat-list');
     }
 
     function renderSuratTable() {
@@ -2379,14 +2407,11 @@
         else if (s.status === 'Ditolak') badge = '\x3Cspan class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-400/15 text-red-300">Ditolak\x3C/span>';
         const canDownload = s.status === 'Tervalidasi' || manager;
         const firstProdi = (s.peserta && s.peserta[0] && s.peserta[0].prodi) ? s.peserta[0].prodi : '-';
-        const delKey = 'surat:' + s.id;
-        const isConfirmingDel = pendingDeleteKey === delKey;
 
         const mgrActions = manager ? [
           '\x3Cbutton type="button" onclick="triggerQuickTTDUpload(\'' + s.id + '\')" class="btn-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-signature">\x3C/i>\x3Cspan>Upload TTD\x3C/span>\x3C/button>',
           '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Tervalidasi\')" class="px-2 py-1.5 rounded-full bg-emerald-400/15 hover:bg-emerald-400/30 text-emerald-300 text-[11px] font-bold transition cursor-pointer" title="Setujui">\x3Ci class="ti ti-check">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="handleDeleteItem(\'surat\', \'' + s.id + '\')" class="px-2 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Surat">' + (isConfirmingDel ? 'Yakin?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
+          '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>'
         ].join('') : '';
 
         const dlActions = canDownload ? [
@@ -2544,7 +2569,7 @@
         '    \x3Cthead>',
         '      \x3Ctr style="background-color:#f1f5f9;">',
         '        \x3Cth style="border:1px solid #000000; padding:6px 8px; width:36px; text-align:center;">No\x3C/th>',
-        '        \x3Cth style="border:1px solid #000000; padding:6px 8px; text-align:left;">Nama Lengkap & Gelar\x3C/th>',
+        '        \x3Cth style="border:1px solid #000000; padding:6px 8px; text-align:left;">Nama Lengkap &amp; Gelar\x3C/th>',
         '        \x3Cth style="border:1px solid #000000; padding:6px 8px; width:105px; text-align:center;">NIDN / NIP\x3C/th>',
         '        \x3Cth style="border:1px solid #000000; padding:6px 8px; text-align:left;">Jabatan\x3C/th>',
         '        \x3Cth style="border:1px solid #000000; padding:6px 8px; text-align:left;">Program Studi\x3C/th>',
@@ -2569,7 +2594,7 @@
         '  \x3C/table>',
         '\x3C/div>',
         '\x3Cdiv style="margin-top:26px; padding-top:8px; border-top:2px solid #1e3a8a; text-align:center;">',
-        '  \x3Cdiv style="font-size:9.5pt; font-weight:bold; letter-spacing:0.6px; color:#dc2626;">"LULUSANNYA MUDAH BEKERJA & BERSERTIFIKASI INTERNASIONAL"\x3C/div>',
+        '  \x3Cdiv style="font-size:9.5pt; font-weight:bold; letter-spacing:0.6px; color:#dc2626;">"LULUSANNYA MUDAH BEKERJA &amp; BERSERTIFIKASI INTERNASIONAL"\x3C/div>',
         '\x3C/div>'
       ].join('\n');
     }
@@ -2693,8 +2718,14 @@
     function openSignatureModal() {
       const img = document.getElementById('signature-preview-img');
       const empty = document.getElementById('signature-empty-text');
-      if (appState.defaultSignature) { img.src = appState.defaultSignature; img.classList.remove('hidden'); empty.classList.add('hidden'); }
-      else { img.classList.add('hidden'); empty.classList.remove('hidden'); }
+      if (appState.defaultSignature) {
+        img.src = appState.defaultSignature;
+        img.classList.remove('hidden');
+        empty.classList.add('hidden');
+      } else {
+        img.classList.add('hidden');
+        empty.classList.remove('hidden');
+      }
       document.getElementById('modal-signature').classList.remove('hidden');
     }
 
@@ -2719,7 +2750,7 @@
     }
 
     /* ==========================================================================
-       SIKLUS 4 TAHAP & KARYA ILMIAH
+       SIKLUS 4 TAHAP & KARYA ILMIAH (UNGGAH OTOMATIS KE GOOGLE DRIVE)
        ========================================================================== */
     function selectCycleStage(stageNum) {
       const stageLabels = {
@@ -2754,21 +2785,50 @@
       else if (val.indexOf('Tahap 04') !== -1) selectCycleStage(4);
     }
 
+    function readFileAsBase64Payload(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          const commaIdx = result.indexOf(',');
+          const base64Data = commaIdx !== -1 ? result.slice(commaIdx + 1) : result;
+          resolve({
+            base64Data: base64Data,
+            mimeType: file.type || 'application/octet-stream',
+            fileName: file.name
+          });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
     async function handleCreateKaryaSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('btn-submit-karya');
-      if (btn) { btn.disabled = true; btn.textContent = 'Menyimpan ke Spreadsheet...'; }
+      if (btn) { btn.disabled = true; btn.textContent = 'Mengunggah ke Google Drive...'; }
 
       try {
         const fileInput = document.getElementById('karya-file');
         const file = fileInput.files && fileInput.files[0];
         let fileName = 'Dokumen_Tautan_Repositori.pdf';
         let fileSize = 'Tersimpan di Tautan';
+        let filePayload = null;
 
         if (file) {
-          if (file.size > 10 * 1024 * 1024) { showToast('Ukuran berkas melebihi batas maksimal 10 MB.', 'error'); return; }
+          if (file.size > 10 * 1024 * 1024) {
+            showToast('Ukuran berkas melebihi batas maksimal 10 MB.', 'error');
+            return;
+          }
           fileName = file.name;
           fileSize = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+          filePayload = await readFileAsBase64Payload(file);
+        }
+
+        const manualDriveUrl = document.getElementById('karya-gdrive').value.trim();
+        if (!filePayload && !manualDriveUrl) {
+          showToast('Silakan unggah file lampiran atau isi tautan Google Drive Anda.', 'warning');
+          return;
         }
 
         const newKarya = {
@@ -2776,20 +2836,36 @@
           tahap: document.getElementById('karya-tahap').value,
           jenis: document.getElementById('karya-jenis').value,
           judul: document.getElementById('karya-judul').value.trim(),
-          dosenName: appState.currentUser.name, dosenEmail: appState.currentUser.email,
+          dosenName: appState.currentUser.name,
+          dosenEmail: appState.currentUser.email,
           prodi: document.getElementById('karya-prodi').value,
-          gdriveUrl: document.getElementById('karya-gdrive').value.trim(),
-          fileName: fileName, fileSize: fileSize,
+          gdriveUrl: manualDriveUrl || 'https://drive.google.com/',
+          fileName: fileName,
+          fileSize: fileSize,
           ringkasan: document.getElementById('karya-ringkasan').value.trim(),
-          status: 'Menunggu Persetujuan', catatan: 'Menunggu verifikasi dokumen oleh tim LPPM.',
+          status: 'Menunggu Persetujuan',
+          catatan: 'Menunggu verifikasi dokumen oleh tim LPPM.',
           createdAt: new Date().toLocaleString('id-ID')
         };
 
-        await hydrateFromCloud(false);
-        appState.karyaList.unshift(newKarya);
+        const res = await GASBridge.sendAction('uploadKarya', {
+          karya: newKarya,
+          file: filePayload
+        });
 
-        const ok = await saveAndSyncCloud('Pengajuan Karya Ilmiah', 'Mengajukan ' + newKarya.jenis + ': "' + newKarya.judul + '".');
-        if (ok) showToast('Proposal / karya ilmiah berhasil dikirim & tersimpan di Google Sheets.', 'success');
+        if (res && res.ok) {
+          if (Array.isArray(res.karyaList)) appState.karyaList = res.karyaList;
+          else appState.karyaList.unshift(res.karya || newKarya);
+          saveLocalOnly();
+          showToast(res.fileUrl
+            ? 'Berkas berhasil diunggah ke folder Google Drive LPPM & tercatat di Spreadsheet!'
+            : 'Proposal / karya ilmiah berhasil dikirim & tersimpan di Spreadsheet.', 'success');
+        } else {
+          appState.karyaList.unshift(newKarya);
+          await saveAndSyncCloud('Pengajuan Karya Ilmiah', 'Mengajukan ' + newKarya.jenis + ': "' + newKarya.judul + '".');
+          showToast('Pengajuan tersimpan (Unggah Drive langsung butuh deploy ulang Code.gs).', 'warning');
+        }
+
         event.target.reset();
         selectCycleStage(1);
         updateDashboardStats();
@@ -2797,7 +2873,7 @@
       } finally {
         if (btn) {
           btn.disabled = false;
-          btn.innerHTML = '\x3Ci class="ti ti-cloud-upload text-base">\x3C/i>\x3Cspan>Kirim Pengajuan Proposal / Karya\x3C/span>';
+          btn.innerHTML = '\x3Ci class="ti ti-cloud-upload text-base">\x3C/i>\x3Cspan>Kirim &amp; Unggah ke Google Drive\x3C/span>';
         }
       }
     }
@@ -2829,13 +2905,9 @@
         if (k.status === 'Tervalidasi') badge = '\x3Cspan class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-400/15 text-emerald-300">Tervalidasi LPPM\x3C/span>';
         else if (k.status === 'Ditolak') badge = '\x3Cspan class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-400/15 text-red-300">Perlu Revisi / Ditolak\x3C/span>';
 
-        const delKey = 'karya:' + k.id;
-        const isConfirmingDel = pendingDeleteKey === delKey;
-
         const mgrButtons = manager ? [
           '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Tervalidasi\')" class="px-2 py-1.5 rounded-full bg-emerald-400/15 hover:bg-emerald-400/30 text-emerald-300 text-[11px] font-bold transition cursor-pointer" title="Validasi Karya">\x3Ci class="ti ti-check">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="handleDeleteItem(\'karya\', \'' + k.id + '\')" class="px-2 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Karya">' + (isConfirmingDel ? 'Yakin?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
+          '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>'
         ].join('') : '';
 
         return [
@@ -2928,9 +3000,9 @@
         '      \x3Cdiv style="font-size:9pt;">Kampus Bersih LPKIA Jl. Soekarno Hatta No. 456 Bandung 40266, Telp. (022) 7564283 / 7564284\x3C/div>',
         '    \x3C/td>\x3C/tr>',
         '  \x3C/table>',
-        '  \x3Cdiv style="text-align:center;font-weight:bold;font-size:12pt;text-decoration:underline;margin-bottom:12px;">REKAPITULASI PROPOSAL, LAPORAN & KARYA ILMIAH DOSEN\x3C/div>',
+        '  \x3Cdiv style="text-align:center;font-weight:bold;font-size:12pt;text-decoration:underline;margin-bottom:12px;">REKAPITULASI PROPOSAL, LAPORAN &amp; KARYA ILMIAH DOSEN\x3C/div>',
         '  \x3Ctable style="width:100%;border-collapse:collapse;font-size:9.5pt;">',
-        '    \x3Cthead>\x3Ctr style="background:#f1f5f9;">\x3Cth style="border:1px solid #000;padding:5px;width:30px;">No\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Dosen & Prodi\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Judul & Jenis Karya\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Tahap Siklus\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Status\x3C/th>\x3C/tr>\x3C/thead>',
+        '    \x3Cthead>\x3Ctr style="background:#f1f5f9;">\x3Cth style="border:1px solid #000;padding:5px;width:30px;">No\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Dosen &amp; Prodi\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Judul &amp; Jenis Karya\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Tahap Siklus\x3C/th>\x3Cth style="border:1px solid #000;padding:5px;">Status\x3C/th>\x3C/tr>\x3C/thead>',
         '    \x3Ctbody>' + rows + '\x3C/tbody>',
         '  \x3C/table>',
         '  \x3Cdiv style="margin-top:24px;text-align:right;font-size:10.5pt;">',
@@ -2939,7 +3011,7 @@
         '    \x3Cdiv style="font-weight:bold;text-decoration:underline;">Dayanni Vera Versanika., M.Kom\x3C/div>',
         '    \x3Cdiv>NIDN. 0424099204\x3C/div>',
         '  \x3C/div>',
-        '  \x3Cdiv style="margin-top:18px;padding-top:6px;border-top:2px solid #1e3a8a;text-align:center;font-size:9pt;font-weight:bold;color:#dc2626;">"LULUSANNYA MUDAH BEKERJA & BERSERTIFIKASI INTERNASIONAL"\x3C/div>',
+        '  \x3Cdiv style="margin-top:18px;padding-top:6px;border-top:2px solid #1e3a8a;text-align:center;font-size:9pt;font-weight:bold;color:#dc2626;">"LULUSANNYA MUDAH BEKERJA &amp; BERSERTIFIKASI INTERNASIONAL"\x3C/div>',
         '\x3C/div>'
       ].join('');
       await new Promise((r) => setTimeout(r, 180));
@@ -2950,76 +3022,8 @@
     }
 
     /* ==========================================================================
-       MANAJEMEN AKUN, HAPUS DATA (2-KLIK AMAN) & AUDIT LOG
+       MANAJEMEN AKUN & AUDIT LOG (ATOMIK LANGSUNG KE GOOGLE SHEETS)
        ========================================================================== */
-    async function handleDeleteItem(type, id) {
-      const key = type + ':' + id;
-      if (pendingDeleteKey !== key) {
-        pendingDeleteKey = key;
-        if (pendingDeleteTimer) clearTimeout(pendingDeleteTimer);
-        pendingDeleteTimer = setTimeout(() => {
-          pendingDeleteKey = null;
-          if (type === 'user') renderAkunTable();
-          else if (type === 'surat') renderSuratTable();
-          else if (type === 'karya') renderKaryaTable();
-        }, 4000);
-        if (type === 'user') renderAkunTable();
-        else if (type === 'surat') renderSuratTable();
-        else if (type === 'karya') renderKaryaTable();
-        return;
-      }
-
-      pendingDeleteKey = null;
-      if (pendingDeleteTimer) clearTimeout(pendingDeleteTimer);
-
-      if (type === 'user') {
-        if (appState.currentUser && appState.currentUser.id === id) {
-          showToast('Anda tidak dapat menghapus akun yang sedang digunakan untuk login.', 'warning');
-          renderAkunTable();
-          return;
-        }
-        const target = appState.users.find((u) => u.id === id);
-        if (!target) return;
-        const res = await GASBridge.sendAction('deleteUser', {
-          userId: id,
-          actor: appState.currentUser ? (appState.currentUser.name + ' (' + appState.currentUser.role + ')') : 'Admin LPPM'
-        });
-        if (!res || !res.ok) {
-          showToast('Gagal menghapus akun di Spreadsheet: ' + ((res && res.error) || 'Coba lagi.'), 'error');
-          renderAkunTable();
-          return;
-        }
-        if (Array.isArray(res.users)) appState.users = res.users;
-        else appState.users = appState.users.filter((u) => u.id !== id);
-        saveLocalOnly();
-        renderAkunTable();
-        updateDashboardStats();
-        showToast('Akun ' + target.name + ' (' + target.email + ') berhasil dihapus dari Spreadsheet.', 'info');
-        return;
-      }
-
-      if (type === 'surat') {
-        const target = appState.suratList.find((s) => s.id === id);
-        if (!target) return;
-        appState.suratList = appState.suratList.filter((s) => s.id !== id);
-        renderSuratTable();
-        updateDashboardStats();
-        await saveAndSyncCloud('Hapus Dokumen Surat', 'Menghapus surat ' + target.nomor + ' ("' + target.judul + '").');
-        showToast('Surat ' + target.nomor + ' berhasil dihapus.', 'info');
-        return;
-      }
-
-      if (type === 'karya') {
-        const target = appState.karyaList.find((k) => k.id === id);
-        if (!target) return;
-        appState.karyaList = appState.karyaList.filter((k) => k.id !== id);
-        renderKaryaTable();
-        updateDashboardStats();
-        await saveAndSyncCloud('Hapus Karya Ilmiah', 'Menghapus karya "' + target.judul + '".');
-        showToast('Data karya ilmiah berhasil dihapus.', 'info');
-      }
-    }
-
     function renderAkunTable() {
       const tbody = document.getElementById('akun-table-body');
       const summaryEl = document.getElementById('akun-summary-badges');
@@ -3074,13 +3078,6 @@
           '\x3Cbutton type="button" onclick="quickUpdateUserStatus(\'' + u.id + '\', \'Ditolak\')" class="px-2.5 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer">Tolak\x3C/button>'
         ].join('') : '';
 
-        const isSelf = appState.currentUser && appState.currentUser.id === u.id;
-        const delKey = 'user:' + u.id;
-        const isConfirmingDel = pendingDeleteKey === delKey;
-        const deleteBtn = !isSelf
-          ? '\x3Cbutton type="button" onclick="handleDeleteItem(\'user\', \'' + u.id + '\')" class="px-2.5 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Akun">' + (isConfirmingDel ? 'Yakin Hapus?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
-          : '';
-
         return [
           '\x3Ctr class="table-body-row transition">',
           '  \x3Ctd class="p-3.5 align-top font-bold text-[var(--text-primary)]">' + escapeHtml(u.name) + '\x3C/td>',
@@ -3091,8 +3088,7 @@
           '  \x3Ctd class="p-3.5 align-top">' + validationDateHtml + '\x3C/td>',
           '  \x3Ctd class="p-3.5 align-top text-center">\x3Cdiv class="flex flex-wrap items-center justify-center gap-1.5">',
           pendingBtns,
-          '    \x3Cbutton type="button" onclick="openEditAkunModal(\'' + u.id + '\')" class="btn-outline-sand px-3 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-edit">\x3C/i>\x3Cspan>Edit & Sandi\x3C/span>\x3C/button>',
-          deleteBtn,
+          '    \x3Cbutton type="button" onclick="openEditAkunModal(\'' + u.id + '\')" class="btn-outline-sand px-3 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-edit">\x3C/i>\x3Cspan>Edit &amp; Sandi\x3C/span>\x3C/button>',
           '  \x3C/div>\x3C/td>',
           '\x3C/tr>'
         ].join('');
@@ -3123,10 +3119,12 @@
       else Object.assign(user, updated);
       saveLocalOnly();
       renderAkunTable();
-      updateDashboardStats();
 
       const labelStatus = newStatus === 'Disetujui' ? 'Tervalidasi' : newStatus;
-      showToast('Akun ' + updated.name + ' berstatus ' + labelStatus + ' & tersimpan ke Spreadsheet!', 'success');
+      const emailInfo = res.emailSent
+        ? (' & notifikasi email terkirim ke ' + updated.email)
+        : (newStatus === 'Disetujui' && res.emailError ? ' (Catatan email: ' + res.emailError + ')' : '');
+      showToast('Akun ' + updated.name + ' berstatus ' + labelStatus + emailInfo + '!', 'success');
     }
 
     function openEditAkunModal(userId) {
@@ -3198,9 +3196,9 @@
 
         saveLocalOnly();
         renderAkunTable();
-        updateDashboardStats();
         closeModal('modal-edit-akun');
-        showToast('Perubahan akun ' + updated.name + ' tersimpan permanen di Spreadsheet!', 'success');
+        const emailInfo = res.emailSent ? (' & email notifikasi terkirim ke ' + updated.email) : '';
+        showToast('Perubahan akun ' + updated.name + ' tersimpan permanen di Spreadsheet' + emailInfo + '!', 'success');
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = 'Simpan ke Spreadsheet'; }
       }
@@ -3267,7 +3265,6 @@
       hydrateFromCloud(false).then((ok) => {
         if (ok && appState.currentUser) {
           updateDashboardStats();
-          renderDashboardVisuals();
           renderAkunTable();
           renderSuratTable();
           renderKaryaTable();
