@@ -1449,12 +1449,13 @@
 
         if (this.hasRemoteAPI()) {
           return withTimeout((async () => {
+            const rawBody = JSON.stringify(payload);
             try {
               const resp = await fetch(GAS_API_URL, {
                 method: 'POST',
                 redirect: 'follow',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
+                body: rawBody
               });
               const text = await resp.text();
               const data = JSON.parse(text);
@@ -1463,9 +1464,32 @@
               }
               this.updateStatusBadge('Tersimpan di Spreadsheet', true);
               return data;
-            } catch (err) {
+            } catch (postErr) {
+              // Fallback otomatis ke GET jika browser memblokir redirect POST lintas domain
+              if (rawBody.length < 6000 && ['registerUser', 'updateUser', 'deleteUser', 'appendLog'].indexOf(action) !== -1) {
+                try {
+                  const getUrl = GAS_API_URL + '?action=' + encodeURIComponent(action) + '&payload=' + encodeURIComponent(rawBody) + '&t=' + Date.now();
+                  const getResp = await fetch(getUrl, { method: 'GET', redirect: 'follow' });
+                  const getText = await getResp.text();
+                  const getData = JSON.parse(getText);
+                  if (!getData || !getData.ok) {
+                    throw new Error((getData && getData.error) || 'Gagal menyimpan lewat jalur cadangan.');
+                  }
+                  this.updateStatusBadge('Tersimpan di Spreadsheet', true);
+                  return getData;
+                } catch (getErr) {
+                  const msg = String(getErr.message || postErr.message || '');
+                  if (msg.indexOf('sudah terdaftar') !== -1 || msg.indexOf('wajib menggunakan') !== -1) {
+                    this.updateStatusBadge('Spreadsheet Aktif', true);
+                    return { ok: false, error: msg };
+                  }
+                }
+              }
               this.updateStatusBadge('Gagal Simpan Cloud', false);
-              return { ok: false, error: err.message };
+              return {
+                ok: false,
+                error: 'Koneksi ke Apps Script tertahan. Pastikan sudah Run setupPermissions & Deploy New version (akses: Anyone).'
+              };
             }
           })(), 25000);
         }
