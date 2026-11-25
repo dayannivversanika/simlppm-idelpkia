@@ -8,23 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sacramento&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sacramento&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 
   <style>
-    /* ==========================================================================
-       DESIGN SYSTEM: DEEP SLATE NAVY & WARM COPPER-GOLD EDITORIAL
-       ========================================================================== */
     :root,
     [data-theme="navy"] {
       --bg-base: #1b2d3f;
       --bg-deep: #132231;
-      --bg-surface: rgba(24, 42, 60, 0.78);
-      --bg-surface-strong: rgba(19, 34, 49, 0.93);
+      --bg-surface: rgba(24, 42, 60, 0.76);
+      --bg-surface-strong: rgba(19, 34, 49, 0.92);
       --bg-subcard: rgba(255, 255, 255, 0.06);
-      --bg-input: rgba(14, 26, 39, 0.74);
+      --bg-input: rgba(14, 26, 39, 0.72);
 
       --sand: #e5bc98;
       --sand-hover: #f0cda9;
@@ -50,10 +47,10 @@
     [data-theme="sand"] {
       --bg-base: #f5efe6;
       --bg-deep: #ebe1d3;
-      --bg-surface: rgba(255, 252, 247, 0.88);
-      --bg-surface-strong: rgba(255, 252, 247, 0.96);
+      --bg-surface: rgba(255, 252, 247, 0.86);
+      --bg-surface-strong: rgba(255, 252, 247, 0.95);
       --bg-subcard: rgba(200, 134, 82, 0.08);
-      --bg-input: rgba(255, 255, 255, 0.94);
+      --bg-input: rgba(255, 255, 255, 0.92);
 
       --sand: #22384d;
       --sand-hover: #172737;
@@ -95,10 +92,6 @@
       font-family: 'Sacramento', cursive;
       font-weight: 400;
       letter-spacing: 0.5px;
-    }
-
-    .font-serif-editorial {
-      font-family: 'Cormorant Garamond', Georgia, serif;
     }
 
     .editorial-card {
@@ -174,10 +167,11 @@
     .sidebar-nav-item {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
       width: 100%;
       padding: 10px 14px;
-      border-radius: 999px;
+      border-radius: 12px;
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-secondary);
@@ -218,15 +212,25 @@
     }
 
     .foil-ornament-bl {
-      position: fixed; left: -40px; bottom: -40px; width: 360px; height: 220px;
-      pointer-events: none; z-index: 0; opacity: 0.72;
+      position: fixed; left: -40px; bottom: -40px; width: 340px; height: 210px;
+      pointer-events: none; z-index: 0; opacity: 0.65;
     }
     .foil-ornament-tr {
       position: fixed; right: -30px; top: -20px; width: 240px; height: 170px;
-      pointer-events: none; z-index: 0; opacity: 0.60;
+      pointer-events: none; z-index: 0; opacity: 0.55;
     }
     [data-theme="sand"] .foil-ornament-bl,
     [data-theme="sand"] .foil-ornament-tr { opacity: 0.35; }
+
+    .vertical-rail-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      letter-spacing: 0.32em;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: 0.72;
+    }
 
     @keyframes spinSlow {
       from { transform: rotate(0deg); }
@@ -326,18 +330,18 @@
   <div id="main-wrapper" class="relative z-10 flex min-h-screen w-full">
 
     <!-- ================= LEFT SIDEBAR ================= -->
-    <aside id="application-sidebar" aria-label="Menu Samping Utama" class="editorial-sidebar fixed xl:static inset-y-0 left-0 z-50 w-[274px] flex-col justify-between shrink-0 transition-transform duration-300 -translate-x-full xl:translate-x-0 hidden">
+    <aside id="application-sidebar" aria-label="Menu Samping Utama" class="editorial-sidebar fixed xl:static inset-y-0 left-0 z-50 w-[278px] flex-col justify-between shrink-0 transition-transform duration-300 -translate-x-full xl:translate-x-0 hidden">
       <div>
         <div class="px-6 py-5 flex items-center justify-between border-b border-[var(--border-soft)]">
           <div class="flex items-center gap-3">
-            <div id="sidebar-logo-holder" class="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm">
+            <div id="sidebar-logo-holder" class="w-10 h-10 rounded-xl bg-white p-1 flex items-center justify-center shrink-0 shadow-sm">
               <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
-                <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
-                <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
-                <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
-                <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
-                <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
-                <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+                <rect x="8" y="8" width="38" height="14" fill="#dc2626" />
+                <polygon points="8,29 46,29 46,44 8,77" fill="#1e1b78" />
+                <polygon points="50,42 92,8 92,77 50,77" fill="#1e1b78" />
+                <rect x="8" y="82" width="71" height="9" fill="#1e1b78" />
+                <rect x="21" y="86" width="71" height="11" fill="#1e1b78" />
+                <text x="54" y="94" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="14">LPKIA</text>
               </svg>
             </div>
             <div>
@@ -357,24 +361,21 @@
             </div>
             <nav aria-label="Menu Modul Utama" class="space-y-1.5">
               <button type="button" id="nav-tab-dashboard" onclick="switchMainTab('dashboard'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item active">
-                <i class="ti ti-layout-dashboard text-lg shrink-0"></i>
-                <span>Dashboard Utama</span>
+                <span class="flex items-center gap-3"><i class="ti ti-layout-dashboard text-lg shrink-0"></i><span>Dashboard Utama</span></span>
               </button>
               <button type="button" id="nav-tab-surat-form" onclick="switchMainTab('surat-form'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <i class="ti ti-file-plus text-lg shrink-0"></i>
-                <span>Formulir Pembuatan Surat</span>
+                <span class="flex items-center gap-3"><i class="ti ti-file-plus text-lg shrink-0"></i><span>Formulir Pembuatan Surat</span></span>
               </button>
               <button type="button" id="nav-tab-surat-list" onclick="switchMainTab('surat-list'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <i class="ti ti-file-certificate text-lg shrink-0"></i>
-                <span>Antrean &amp; Daftar Surat</span>
+                <span class="flex items-center gap-3"><i class="ti ti-file-certificate text-lg shrink-0"></i><span>Antrean &amp; Daftar Surat</span></span>
+                <span id="badge-pending-surat" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
               </button>
               <button type="button" id="nav-tab-karya-form" onclick="switchMainTab('karya-form'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <i class="ti ti-upload text-lg shrink-0"></i>
-                <span>Formulir Proposal &amp; Karya</span>
+                <span class="flex items-center gap-3"><i class="ti ti-upload text-lg shrink-0"></i><span>Formulir Proposal &amp; Karya</span></span>
               </button>
               <button type="button" id="nav-tab-karya-list" onclick="switchMainTab('karya-list'); toggleMobileSidebar(false);" class="main-tab-btn sidebar-nav-item">
-                <i class="ti ti-books text-lg shrink-0"></i>
-                <span>Daftar Pengajuan Karya</span>
+                <span class="flex items-center gap-3"><i class="ti ti-books text-lg shrink-0"></i><span>Daftar Pengajuan Karya</span></span>
+                <span id="badge-pending-karya" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
               </button>
             </nav>
           </div>
@@ -385,12 +386,11 @@
             </div>
             <nav aria-label="Menu Administrasi" class="space-y-1.5">
               <button type="button" id="nav-tab-akun" onclick="switchMainTab('akun'); toggleMobileSidebar(false);" class="main-tab-btn admin-only-menu sidebar-nav-item">
-                <i class="ti ti-users text-lg shrink-0"></i>
-                <span>Validasi &amp; Kelola Akun</span>
+                <span class="flex items-center gap-3"><i class="ti ti-users text-lg shrink-0"></i><span>Validasi &amp; Kelola Akun</span></span>
+                <span id="badge-pending-akun" class="hidden px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-[#162432]">0</span>
               </button>
               <button type="button" id="nav-tab-logs" onclick="switchMainTab('logs'); toggleMobileSidebar(false);" class="main-tab-btn admin-only-menu sidebar-nav-item">
-                <i class="ti ti-history text-lg shrink-0"></i>
-                <span>Log Aktivitas &amp; Audit</span>
+                <span class="flex items-center gap-3"><i class="ti ti-history text-lg shrink-0"></i><span>Log Aktivitas &amp; Audit</span></span>
               </button>
             </nav>
           </div>
@@ -399,7 +399,7 @@
 
       <div class="p-4 m-4 editorial-subcard space-y-2.5">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-[#e5bc98]/20 text-[#e5bc98] flex items-center justify-center shrink-0">
+          <div class="w-8 h-8 rounded-lg bg-[#e5bc98]/20 text-[#e5bc98] flex items-center justify-center shrink-0">
             <i class="ti ti-shield-check text-base"></i>
           </div>
           <div class="text-xs">
@@ -409,9 +409,9 @@
         </div>
         <div class="pt-2 border-t border-[var(--border-soft)] text-[11px] text-[var(--text-secondary)] font-semibold flex items-center justify-between">
           <span>NIDN. 0424099204</span>
-          <span class="text-[#e5bc98] font-bold">v5.4</span>
+          <span class="text-[#e5bc98] font-bold">v5.6</span>
         </div>
-        <button type="button" onclick="handleLogout()" class="w-full bg-red-500/15 hover:bg-red-500/25 text-red-300 border border-red-400/30 font-semibold text-xs py-2 px-3 rounded-full transition flex items-center justify-center gap-1.5 cursor-pointer">
+        <button type="button" onclick="handleLogout()" class="w-full bg-red-500/15 hover:bg-red-500/25 text-red-300 border border-red-400/30 font-semibold text-xs py-2 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer">
           <i class="ti ti-power text-sm"></i>
           <span>Keluar Sesi</span>
         </button>
@@ -429,23 +429,23 @@
               <i class="ti ti-menu-2 text-xl"></i>
             </button>
 
-            <div id="navbar-logo-holder" class="w-11 h-11 rounded-full bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm" aria-label="Logo Resmi IDE LPKIA Bandung">
-              <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
-                <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
-                <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
-                <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
-                <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
-                <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
-                <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+            <div id="navbar-logo-holder" class="w-11 h-11 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0 shadow-sm" aria-label="Logo Resmi IDE LPKIA Bandung">
+              <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo Resmi LPKIA">
+                <rect x="8" y="8" width="38" height="14" fill="#dc2626" />
+                <polygon points="8,29 46,29 46,44 8,77" fill="#1e1b78" />
+                <polygon points="50,42 92,8 92,77 50,77" fill="#1e1b78" />
+                <rect x="8" y="82" width="71" height="9" fill="#1e1b78" />
+                <rect x="21" y="86" width="71" height="11" fill="#1e1b78" />
+                <text x="54" y="94" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="14">LPKIA</text>
               </svg>
             </div>
             <div>
               <div class="flex items-center gap-2 flex-wrap">
                 <span class="font-extrabold text-base sm:text-lg tracking-tight text-[var(--text-primary)]">SIMLPPM IDE LPKIA</span>
-                <span id="gas-sync-pill" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#e5bc98]/15 text-[#e5bc98] border border-[#e5bc98]/30">Menghubungkan Cloud...</span>
+                <span id="gas-sync-pill" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#e5bc98]/15 text-[#e5bc98] border border-[#e5bc98]/30">Menghubungkan Spreadsheet...</span>
               </div>
               <p class="text-[11px] text-[var(--text-muted)]">
-                created by <span class="text-[#e5bc98] font-semibold">Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</span>
+                created by <span class="text-[var(--text-primary)] font-semibold">Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</span>
               </p>
             </div>
           </div>
@@ -457,11 +457,11 @@
             </button>
 
             <div id="navbar-user-panel" class="hidden items-center gap-2.5 flex-wrap">
-              <div class="editorial-subcard px-3.5 py-1.5 text-xs rounded-full">
+              <div class="editorial-subcard px-3.5 py-1.5 text-xs">
                 <div class="flex items-center gap-2">
                   <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
                   <span id="nav-user-name" class="font-bold text-[var(--text-primary)]">-</span>
-                  <span id="nav-user-role-badge" class="px-2 py-0.5 rounded-full bg-[#e5bc98]/20 text-[#e5bc98] font-bold text-[10px] uppercase">-</span>
+                  <span id="nav-user-role-badge" class="px-2 py-0.5 rounded-md bg-[#e5bc98]/20 text-[#e5bc98] font-bold text-[10px] uppercase">-</span>
                 </div>
                 <div class="flex items-center justify-between gap-3 text-[11px] text-[var(--text-muted)] mt-0.5">
                   <span id="nav-user-email">-</span>
@@ -485,19 +485,23 @@
         <section id="auth-view" class="py-4 sm:py-8 my-2">
           <div class="max-w-5xl mx-auto editorial-card overflow-hidden grid grid-cols-1 lg:grid-cols-12">
 
-            <!-- Kolom Kiri: Editorial Hero -->
+            <!-- Kolom Kiri -->
             <div class="lg:col-span-6 p-8 sm:p-10 relative flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[var(--border-soft)] bg-gradient-to-br from-[#1b2d3f]/65 to-[#101c28]/80">
-              <div>
+              <div class="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 vertical-rail-text select-none">
+                SIMLPPM &bull; IDE LPKIA BANDUNG
+              </div>
+
+              <div class="sm:pl-6">
                 <div class="flex items-center justify-between gap-3 mb-7">
                   <div class="flex items-center gap-3">
-                    <div id="auth-logo-holder" class="w-14 h-14 bg-white rounded-full p-2 shadow-md border-2 border-[#dca782]/70 flex items-center justify-center shrink-0">
-                      <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo LPKIA">
-                        <rect x="8" y="8" width="38" height="15" fill="#dc2626"/>
-                        <polygon points="8,30 46,30 46,44 8,74" fill="#1e1b78"/>
-                        <polygon points="50,42 92,8 92,74 50,74" fill="#1e1b78"/>
-                        <rect x="8" y="78" width="72" height="9" fill="#1e1b78"/>
-                        <rect x="20" y="82" width="72" height="12" fill="#1e1b78"/>
-                        <text x="56" y="91" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="11">LPKIA</text>
+                    <div id="auth-logo-holder" class="w-14 h-14 bg-white rounded-2xl p-2 shadow-md flex items-center justify-center shrink-0">
+                      <svg viewBox="0 0 100 100" class="w-full h-full" aria-label="Logo Resmi IDE LPKIA Bandung">
+                        <rect x="8" y="8" width="38" height="14" fill="#dc2626" />
+                        <polygon points="8,29 46,29 46,44 8,77" fill="#1e1b78" />
+                        <polygon points="50,42 92,8 92,77 50,77" fill="#1e1b78" />
+                        <rect x="8" y="82" width="71" height="9" fill="#1e1b78" />
+                        <rect x="21" y="86" width="71" height="11" fill="#1e1b78" />
+                        <text x="54" y="94" text-anchor="middle" fill="#ffffff" font-family="Georgia,serif" font-weight="900" font-size="14">LPKIA</text>
                       </svg>
                     </div>
                     <div>
@@ -507,12 +511,12 @@
                     </div>
                   </div>
 
-                  <div class="hidden sm:flex items-center justify-center relative w-20 h-20 shrink-0 rounded-full bg-[#121c28]/80 border border-[#e5bc98]/40">
+                  <div class="hidden sm:flex items-center justify-center relative w-20 h-20 shrink-0">
                     <svg viewBox="0 0 100 100" class="w-20 h-20 spin-seal text-[#e5bc98]">
                       <defs>
                         <path id="sealPath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
                       </defs>
-                      <text font-size="7.8" font-weight="700" fill="currentColor" letter-spacing="2.2">
+                      <text font-size="8.2" font-weight="700" fill="currentColor" letter-spacing="2.2">
                         <textPath href="#sealPath">LPPM IDE LPKIA &bull; BANDUNG RESMI &bull;</textPath>
                       </text>
                     </svg>
@@ -523,10 +527,10 @@
                 </div>
 
                 <div class="font-script text-4xl sm:text-5xl text-[#e5bc98] leading-tight mb-3">
-                  Explore your research
+                  Explore research excellence
                 </div>
                 <p class="text-xs sm:text-sm text-[#c5d1dc] leading-relaxed mb-5">
-                  Layanan terpadu pengajuan Surat Tugas Penelitian, Pengabdian kepada Masyarakat (PkM), Kontrak Penelitian, Narasumber, Publikasi Ilmiah, SK Selesai, serta repositori Proposal, Laporan Akhir, dan Karya Ilmiah Dosen.
+                  Layanan terpadu pengajuan Surat Tugas Penelitian, Pengabdian kepada Masyarakat (PkM), Kontrak Penelitian, Narasumber, Publikasi Ilmiah, SK Selesai, serta repositori Proposal, Laporan Akhir, dan Karya Ilmiah Dosen terintegrasi Google Sheets &amp; Google Drive.
                 </p>
 
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e5bc98]/15 border border-[#e5bc98]/30 text-[11px] font-semibold text-[#e5bc98]">
@@ -535,20 +539,15 @@
                 </div>
               </div>
 
-              <div class="mt-8 pt-5 border-t border-[#e5bc98]/20 text-[11px] text-[#9cb0c3] space-y-1">
+              <div class="sm:pl-6 mt-8 pt-5 border-t border-[#e5bc98]/20 text-[11px] text-[#9cb0c3] space-y-1">
                 <p class="text-[#f5efe8] font-semibold">created by Dayanni Vera Versanika., M.Kom (NIDN. 0424099204)</p>
                 <p class="font-bold text-[#e5bc98] tracking-wide">"LULUSANNYA MUDAH BEKERJA &amp; BERSERTIFIKASI INTERNASIONAL"</p>
               </div>
             </div>
 
-            <!-- Kolom Kanan: Form Login (Tanpa Default) & Registrasi (@gmail.com) -->
+            <!-- Kolom Kanan: Form Login & Registrasi -->
             <div class="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-center">
               <div>
-                <div class="mb-5">
-                  <span class="text-[10.5px] font-bold uppercase tracking-[0.24em] text-[#e5bc98]">Akses Akun Sivitas</span>
-                  <h2 class="font-serif-editorial text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-0.5">Masuk ke SIMLPPM</h2>
-                </div>
-
                 <div class="flex rounded-full editorial-subcard p-1.5 mb-7" role="tablist">
                   <button type="button" id="tab-btn-login" onclick="switchAuthTab('login')" role="tab" aria-selected="true" class="flex-1 py-2.5 px-4 rounded-full text-xs sm:text-sm font-bold transition btn-sand">
                     Masuk Sistem
@@ -561,12 +560,12 @@
                 <!-- FORM LOGIN (KOSONG, TANPA DEFAULT) -->
                 <form id="login-form" onsubmit="handleLoginSubmit(event)" autocomplete="off" class="space-y-5">
                   <div>
-                    <label for="login-username" class="block text-xs font-bold uppercase tracking-wider text-[#e5bc98] mb-1.5">Username / Email (@gmail.com) / NIDN</label>
-                    <input type="text" id="login-username" required autocomplete="username" placeholder="Masukkan username atau email @gmail.com" value="" class="w-full px-4 py-3 text-sm" />
+                    <label for="login-username" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Username / Email (@gmail.com) / NIDN</label>
+                    <input type="text" id="login-username" required autocomplete="username" placeholder="Masukkan username, email @gmail.com, atau NIDN" value="" class="w-full px-4 py-3 text-sm" />
                   </div>
 
                   <div>
-                    <label for="login-password" class="block text-xs font-bold uppercase tracking-wider text-[#e5bc98] mb-1.5">Password</label>
+                    <label for="login-password" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Password</label>
                     <div class="relative">
                       <input type="password" id="login-password" required autocomplete="current-password" placeholder="Masukkan password" value="" class="w-full px-4 py-3 pr-20 text-sm" />
                       <button type="button" onclick="togglePasswordInput('login-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#e5bc98] hover:underline px-2 py-1 cursor-pointer">
@@ -584,7 +583,7 @@
                 <!-- FORM REGISTRASI DOSEN BARU (WAJIB @gmail.com & ATOMIK KE SPREADSHEET) -->
                 <form id="register-form" onsubmit="handleRegisterSubmit(event)" class="space-y-4 hidden">
                   <div class="editorial-subcard p-3.5 text-xs text-[var(--text-secondary)] leading-relaxed">
-                    <strong class="text-[#e5bc98]">Informasi Registrasi:</strong> Wajib menggunakan alamat email <strong>@gmail.com</strong>. Akun baru berstatus <strong>"Menunggu Validasi"</strong> dan langsung masuk ke database Google Sheets agar bisa divalidasi Admin di perangkat mana saja.
+                    <strong class="text-[#e5bc98]">Informasi Registrasi:</strong> Wajib menggunakan alamat email <strong>@gmail.com</strong>. Akun baru berstatus <strong>"Menunggu Validasi"</strong> dan langsung masuk ke database Google Sheets agar bisa divalidasi Admin di perangkat mana saja (dengan notifikasi email otomatis).
                   </div>
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -616,7 +615,7 @@
 
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                      <label for="reg-drive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Repositori</label>
+                      <label for="reg-drive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Google Drive</label>
                       <input type="url" id="reg-drive" placeholder="https://drive.google.com/..." class="w-full px-3.5 py-2.5 text-sm" />
                     </div>
                     <div>
@@ -656,6 +655,10 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" onclick="syncFromCloudManual()" class="btn-outline-sand text-xs px-3.5 py-2.5 flex items-center gap-1.5" title="Tarik data terbaru dari Google Sheets">
+                    <i class="ti ti-refresh text-base text-emerald-400"></i>
+                    <span>Sinkronkan</span>
+                  </button>
                   <button type="button" onclick="openLatestSignedLetter()" class="btn-sand text-xs px-4 py-2.5 flex items-center gap-1.5">
                     <i class="ti ti-eye text-base"></i>
                     <span>Pratinjau Surat Terbaru</span>
@@ -683,7 +686,7 @@
                     <div id="stat-total-surat" class="text-2xl font-extrabold text-[var(--text-primary)] mt-1">0</div>
                     <div id="stat-sub-surat" class="text-xs text-emerald-400 font-semibold mt-1">0 Tervalidasi TTD</div>
                   </div>
-                  <div class="w-11 h-11 rounded-full bg-[#e5bc98]/15 text-[#e5bc98] flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-xl bg-[#e5bc98]/15 text-[#e5bc98] flex items-center justify-center shrink-0">
                     <i class="ti ti-file-certificate text-2xl"></i>
                   </div>
                 </div>
@@ -692,9 +695,9 @@
                   <div>
                     <div class="text-xs font-semibold text-[var(--text-muted)]">Antrean Menunggu</div>
                     <div id="stat-pending-surat" class="text-2xl font-extrabold text-amber-400 mt-1">0</div>
-                    <div class="text-xs text-[var(--text-muted)] mt-1">Surat &amp; Karya Ilmiah</div>
+                    <div id="stat-pending-detail" class="text-xs text-[var(--text-muted)] mt-1">Surat, Karya &amp; Akun</div>
                   </div>
-                  <div class="w-11 h-11 rounded-full bg-amber-400/15 text-amber-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-xl bg-amber-400/15 text-amber-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-clock-hour-4 text-2xl"></i>
                   </div>
                 </div>
@@ -705,7 +708,7 @@
                     <div id="stat-total-karya" class="text-2xl font-extrabold text-[#e5bc98] mt-1">0</div>
                     <div id="stat-sub-karya" class="text-xs text-[var(--text-muted)] mt-1">Proposal, Laporan &amp; Luaran</div>
                   </div>
-                  <div class="w-11 h-11 rounded-full bg-sky-400/15 text-sky-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-xl bg-sky-400/15 text-sky-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-books text-2xl"></i>
                   </div>
                 </div>
@@ -716,7 +719,7 @@
                     <div id="stat-storage-mode" class="text-base font-extrabold text-emerald-400 mt-1.5">Google Sheets</div>
                     <div id="stat-storage-info" class="text-xs text-[var(--text-muted)] mt-1">Sinkron Lintas Browser</div>
                   </div>
-                  <div class="w-11 h-11 rounded-full bg-emerald-400/15 text-emerald-400 flex items-center justify-center shrink-0">
+                  <div class="w-11 h-11 rounded-xl bg-emerald-400/15 text-emerald-400 flex items-center justify-center shrink-0">
                     <i class="ti ti-cloud-check text-2xl"></i>
                   </div>
                 </div>
@@ -732,28 +735,28 @@
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 <button type="button" onclick="switchMainTab('surat-form')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-full bg-[#e5bc98] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-plus text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-xl bg-[#e5bc98] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-plus text-lg"></i></div>
                   <div>
                     <div class="text-xs font-bold text-[var(--text-primary)]">Ajukan Surat Resmi</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Formulir ST &amp; Kontrak</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('surat-list')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-full bg-[#c88652] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-certificate text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-xl bg-[#c88652] text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-file-certificate text-lg"></i></div>
                   <div>
                     <div class="text-xs font-bold text-[var(--text-primary)]">Antrean &amp; Validasi TTD</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Unduh PDF / Word Resmi</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('karya-form')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-full bg-emerald-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-upload text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-xl bg-emerald-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-upload text-lg"></i></div>
                   <div>
                     <div class="text-xs font-bold text-[var(--text-primary)]">Unggah Proposal &amp; Karya</div>
-                    <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Siklus 4 Tahap Penelitian</div>
+                    <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Auto Simpan Google Drive</div>
                   </div>
                 </button>
                 <button type="button" onclick="switchMainTab('karya-list')" class="editorial-subcard p-4 hover:border-[#e5bc98] text-left transition flex items-start gap-3 cursor-pointer">
-                  <div class="w-9 h-9 rounded-full bg-amber-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-books text-lg"></i></div>
+                  <div class="w-9 h-9 rounded-xl bg-amber-400 text-[#162432] flex items-center justify-center shrink-0"><i class="ti ti-books text-lg"></i></div>
                   <div>
                     <div class="text-xs font-bold text-[var(--text-primary)]">Repositori &amp; Ekspor</div>
                     <div class="text-[11px] text-[var(--text-muted)] mt-0.5">Arsip, XLS, CSV, PDF</div>
@@ -851,7 +854,7 @@
 
                 <div class="pt-5 border-t border-[var(--border-soft)] flex flex-wrap items-center justify-end gap-3">
                   <button type="button" onclick="resetFormSurat()" class="btn-outline-sand px-4 py-2.5 text-xs">Atur Ulang</button>
-                  <button type="submit" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
+                  <button type="submit" id="btn-submit-surat" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
                     <i class="ti ti-send text-base"></i><span>Ajukan &amp; Simpan Surat Resmi</span>
                   </button>
                 </div>
@@ -974,7 +977,7 @@
             <div class="editorial-card p-6 sm:p-8">
               <div class="pb-4 mb-6 border-b border-[var(--border-soft)]">
                 <h3 class="text-lg font-extrabold text-[var(--text-primary)]">Formulir Pengajuan Proposal, Laporan &amp; Karya Ilmiah Dosen</h3>
-                <p class="text-xs text-[var(--text-muted)] mt-1">Unggah berkas (maksimal 10 MB) dan lampirkan tautan repositori dokumen Anda.</p>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Unggah berkas PDF/DOCX/ZIP (maksimal 10 MB) untuk disimpan otomatis ke folder Google Drive LPPM, atau sertakan tautan Google Drive Anda.</p>
               </div>
 
               <form id="form-upload-karya" onsubmit="handleCreateKaryaSubmit(event)" class="space-y-5">
@@ -1022,12 +1025,12 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label for="karya-gdrive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Google Drive (Otomatis terisi jika unggah file)</label>
-                    <input type="url" id="karya-gdrive" placeholder="https://drive.google.com/drive/folders/..." class="w-full px-3.5 py-2.5 text-sm" />
+                    <label for="karya-file" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Unggah Berkas ke Google Drive LPPM (PDF/DOCX/ZIP, Maks. 10 MB)</label>
+                    <input type="file" id="karya-file" accept=".pdf,.doc,.docx,.zip" class="w-full border border-[var(--border-soft)] bg-[var(--bg-input)] px-3 py-2 text-xs rounded-xl file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#e5bc98] file:text-[#162432]" />
                   </div>
                   <div>
-                    <label for="karya-file" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Unggah Lampiran ke Google Drive Otomatis (PDF/DOCX, Maks. 10 MB)</label>
-                    <input type="file" id="karya-file" accept=".pdf,.doc,.docx,.zip" class="w-full border border-[var(--border-soft)] bg-[var(--bg-input)] px-3 py-2 text-xs rounded-xl file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#e5bc98] file:text-[#162432]" />
+                    <label for="karya-gdrive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Google Drive Pribadi (Opsional jika unggah file)</label>
+                    <input type="url" id="karya-gdrive" placeholder="Otomatis terisi link Google Drive saat mengunggah file..." class="w-full px-3.5 py-2.5 text-sm" />
                   </div>
                 </div>
 
@@ -1039,7 +1042,7 @@
                 <div class="pt-4 border-t border-[var(--border-soft)] flex justify-end gap-3">
                   <button type="reset" class="btn-outline-sand px-4 py-2.5 text-xs">Reset</button>
                   <button type="submit" id="btn-submit-karya" class="btn-sand px-6 py-2.5 text-xs flex items-center gap-2">
-                    <i class="ti ti-cloud-upload text-base"></i><span>Kirim &amp; Unggah ke Google Drive</span>
+                    <i class="ti ti-cloud-upload text-base"></i><span>Kirim &amp; Simpan ke Google Drive</span>
                   </button>
                 </div>
               </form>
@@ -1053,7 +1056,7 @@
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Repositori Tridharma Dosen</span>
                   <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Pengajuan Karya Ilmiah &amp; Dokumen Wajib Dosen</h2>
-                  <p class="text-xs text-[var(--text-muted)] mt-1">Kelola arsip dosen, unduhan lampiran, serta ekspor laporan .XLS, .CSV, dan Rekap PDF ber-Kop LPKIA.</p>
+                  <p class="text-xs text-[var(--text-muted)] mt-1">Kelola arsip dosen, tautan Google Drive otomatis, serta ekspor laporan .XLS, .CSV, dan Rekap PDF ber-Kop LPKIA.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                   <button type="button" onclick="exportKaryaXLS()" class="btn-outline-sand px-3.5 py-2 text-xs flex items-center gap-1.5"><i class="ti ti-file-spreadsheet text-base text-emerald-400"></i><span>Ekspor .XLS</span></button>
@@ -1081,7 +1084,7 @@
                       <th class="p-3.5">Dosen &amp; Prodi</th>
                       <th class="p-3.5">Tahap Siklus</th>
                       <th class="p-3.5 text-center">Status &amp; Catatan</th>
-                      <th class="p-3.5 text-center">Tautan &amp; Aksi</th>
+                      <th class="p-3.5 text-center">Google Drive &amp; Aksi</th>
                     </tr>
                   </thead>
                   <tbody id="karya-table-body"></tbody>
@@ -1097,7 +1100,7 @@
                 <div>
                   <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e5bc98]">Otoritas Admin &amp; Ketua LPPM</span>
                   <h2 class="text-lg sm:text-xl font-extrabold text-[var(--text-primary)] mt-0.5">Daftar Akun Pengguna &amp; Validasi Pendaftaran Dosen</h2>
-                  <p class="text-xs text-[var(--text-muted)] mt-1">Setiap pendaftaran, validasi, dan perubahan sandi langsung tercatat secara atomik di Google Sheets lintas browser &amp; perangkat.</p>
+                  <p class="text-xs text-[var(--text-muted)] mt-1">Validasi akun dosen (otomatis mengirim notifikasi email ke @gmail.com), edit sandi, atau hapus akun langsung tersinkron ke Google Sheets.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                   <button type="button" onclick="syncFromCloudManual()" class="btn-outline-sand px-3.5 py-2 text-xs flex items-center gap-1.5">
@@ -1132,7 +1135,7 @@
                       <th class="p-3.5">Peran (RBAC)</th>
                       <th class="p-3.5 text-center">Status Validasi</th>
                       <th class="p-3.5">Tanggal Validasi</th>
-                      <th class="p-3.5 text-center">Tindakan &amp; Edit Sandi</th>
+                      <th class="p-3.5 text-center">Tindakan &amp; Kelola</th>
                     </tr>
                   </thead>
                   <tbody id="akun-table-body"></tbody>
@@ -1310,7 +1313,7 @@
           </div>
         </div>
         <div>
-          <label for="edit-akun-drive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Repositori Dosen</label>
+          <label for="edit-akun-drive" class="block text-xs font-bold text-[var(--text-primary)] mb-1.5">Tautan Folder Google Drive Dosen</label>
           <input type="url" id="edit-akun-drive" placeholder="https://drive.google.com/..." class="w-full px-3.5 py-2 text-sm" />
         </div>
         <div>
@@ -1325,7 +1328,7 @@
     </div>
   </div>
 
-  <!-- ================= SCRIPT INTI SIMLPPM (ATOMIK LINTAS DEVICE & AMAN GAS/GITHUB) ================= -->
+  <!-- ================= SCRIPT INTI SIMLPPM v5.6 (GOOGLE SHEETS + JSONP ANTI-BLOKIR) ================= -->
   <script>
     const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyJv9sdg8_blomNQZAs_va-I4uaJaL6d-njrxIc6rrRNcGltXsDhQxMTzJJIGh0akue/exec';
     const THEME_PREF_KEY = 'SIMLPPM_EDITORIAL_THEME';
@@ -1352,16 +1355,55 @@
     }
 
     /* ==========================================================================
-       KONEKTOR CLOUD SPREADSHEET ATOMIK (TIMEOUT 20 DETIK & ANTI OVERWRITE)
+       KONEKTOR CLOUD SPREADSHEET (POST -> GET -> JSONP SCRIPT TAG ANTI-CORS)
        ========================================================================== */
     let cloudHydrated = false;
     let cloudSaveQueue = Promise.resolve({ ok: true });
+    let pendingDeleteKey = null;
+    let pendingDeleteTimer = null;
 
     function withTimeout(promise, ms) {
       return Promise.race([
         promise,
         new Promise((resolve) => setTimeout(() => resolve({ ok: false, error: 'Timeout koneksi Google Sheets (' + Math.round(ms / 1000) + ' dtk).' }), ms))
       ]);
+    }
+
+    // Jalur JSONP: 100% bebas blokir CORS/Redirect lintas domain pada browser apapun
+    function requestGASViaJSONP(url) {
+      return new Promise((resolve) => {
+        const cbName = '__gas_cb_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        const script = document.createElement('script');
+        let finished = false;
+
+        const cleanup = () => {
+          if (finished) return;
+          finished = true;
+          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+          if (script.parentNode) script.parentNode.removeChild(script);
+        };
+
+        window[cbName] = (data) => {
+          cleanup();
+          resolve(data || { ok: false, error: 'Respon JSONP kosong.' });
+        };
+
+        script.onerror = () => {
+          cleanup();
+          resolve({ ok: false, error: 'Gagal memuat skrip dari Google Apps Script.' });
+        };
+
+        const sep = url.indexOf('?') === -1 ? '?' : '&';
+        script.src = url + sep + 'callback=' + cbName + '&_ts=' + Date.now();
+        document.head.appendChild(script);
+
+        setTimeout(() => {
+          if (!finished) {
+            cleanup();
+            resolve({ ok: false, error: 'Timeout JSONP Apps Script.' });
+          }
+        }, 18000);
+      });
     }
 
     const GASBridge = {
@@ -1380,7 +1422,7 @@
             ? 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-400/15 text-emerald-300 border border-emerald-400/30'
             : 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400/15 text-amber-300 border border-amber-400/30';
         }
-        if (modeEl) modeEl.textContent = ok ? 'Spreadsheet Tersinkron' : 'Koneksi Cloud Terputus';
+        if (modeEl) modeEl.textContent = ok ? 'Spreadsheet Tersinkron' : 'Cek Koneksi Spreadsheet';
       },
       async loadCloudState() {
         this.updateStatusBadge('Membaca Spreadsheet...', true);
@@ -1400,25 +1442,31 @@
           }), 20000);
         }
         if (this.hasRemoteAPI()) {
-          return withTimeout((async () => {
-            try {
-              const resp = await fetch(GAS_API_URL + '?action=load&t=' + Date.now(), {
-                method: 'GET',
-                redirect: 'follow'
-              });
+          const loadUrl = GAS_API_URL + '?action=load';
+          // 1. Coba fetch GET terlebih dahulu
+          try {
+            const resp = await withTimeout(fetch(loadUrl + '&t=' + Date.now(), { method: 'GET', redirect: 'follow' }), 10000);
+            if (resp && typeof resp.text === 'function') {
               const text = await resp.text();
               const data = JSON.parse(text);
-              if (!data || !Array.isArray(data.users)) {
-                throw new Error('Respon Apps Script bukan JSON database. Pastikan Code.gs sudah Deploy New version & akses Anyone.');
+              if (data && Array.isArray(data.users)) {
+                cloudHydrated = true;
+                this.updateStatusBadge('Spreadsheet Aktif', true);
+                return data;
               }
-              cloudHydrated = true;
-              this.updateStatusBadge('Spreadsheet Aktif', true);
-              return data;
-            } catch (err) {
-              this.updateStatusBadge('Gagal Konek Cloud', false);
-              return { ok: false, error: err.message };
             }
-          })(), 20000);
+          } catch (e) {}
+
+          // 2. Fallback otomatis ke JSONP (<script>) jika fetch diblokir browser
+          const jsonpData = await requestGASViaJSONP(loadUrl);
+          if (jsonpData && Array.isArray(jsonpData.users)) {
+            cloudHydrated = true;
+            this.updateStatusBadge('Spreadsheet Aktif', true);
+            return jsonpData;
+          }
+
+          this.updateStatusBadge('Koneksi Tertahan', false);
+          return { ok: false, error: (jsonpData && jsonpData.error) || 'Pastikan Code.gs sudah Deploy New version (akses: Anyone).' };
         }
         this.updateStatusBadge('Mode Lokal Aktif', false);
         return { ok: false, error: 'URL Apps Script belum diatur.' };
@@ -1441,57 +1489,52 @@
             if (action === 'registerUser') runner.apiRegisterUser(payload.user);
             else if (action === 'updateUser') runner.apiUpdateUser(payload.user, payload.actor);
             else if (action === 'deleteUser') runner.apiDeleteUser(payload.userId, payload.actor);
+            else if (action === 'saveSuratItem') runner.apiSaveSuratItem(payload.surat, payload.actor);
+            else if (action === 'deleteSuratItem') runner.apiDeleteSuratItem(payload.suratId, payload.actor);
             else if (action === 'uploadKarya') runner.apiUploadKaryaWithFile(payload.karya, payload.file);
+            else if (action === 'deleteKaryaItem') runner.apiDeleteKaryaItem(payload.karyaId, payload.actor);
             else if (action === 'appendLog') runner.apiAppendLog(payload.log);
             else runner.apiSaveAppState(payload);
           }), 25000);
         }
 
         if (this.hasRemoteAPI()) {
-          return withTimeout((async () => {
-            const rawBody = JSON.stringify(payload);
-            try {
-              const resp = await fetch(GAS_API_URL, {
-                method: 'POST',
-                redirect: 'follow',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: rawBody
-              });
+          const rawBody = JSON.stringify(payload);
+
+          // 1. Coba kirim via HTTP POST
+          try {
+            const resp = await withTimeout(fetch(GAS_API_URL, {
+              method: 'POST',
+              redirect: 'follow',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: rawBody
+            }), 15000);
+            if (resp && typeof resp.text === 'function') {
               const text = await resp.text();
               const data = JSON.parse(text);
-              if (!data || !data.ok) {
-                throw new Error((data && data.error) || 'Gagal menyimpan ke Google Sheets.');
+              if (data && typeof data.ok === 'boolean') {
+                this.updateStatusBadge(data.ok ? 'Tersimpan di Spreadsheet' : 'Gagal Validasi Data', data.ok);
+                return data;
               }
-              this.updateStatusBadge('Tersimpan di Spreadsheet', true);
-              return data;
-            } catch (postErr) {
-              // Fallback otomatis ke GET jika browser memblokir redirect POST lintas domain
-              if (rawBody.length < 6000 && ['registerUser', 'updateUser', 'deleteUser', 'appendLog'].indexOf(action) !== -1) {
-                try {
-                  const getUrl = GAS_API_URL + '?action=' + encodeURIComponent(action) + '&payload=' + encodeURIComponent(rawBody) + '&t=' + Date.now();
-                  const getResp = await fetch(getUrl, { method: 'GET', redirect: 'follow' });
-                  const getText = await getResp.text();
-                  const getData = JSON.parse(getText);
-                  if (!getData || !getData.ok) {
-                    throw new Error((getData && getData.error) || 'Gagal menyimpan lewat jalur cadangan.');
-                  }
-                  this.updateStatusBadge('Tersimpan di Spreadsheet', true);
-                  return getData;
-                } catch (getErr) {
-                  const msg = String(getErr.message || postErr.message || '');
-                  if (msg.indexOf('sudah terdaftar') !== -1 || msg.indexOf('wajib menggunakan') !== -1) {
-                    this.updateStatusBadge('Spreadsheet Aktif', true);
-                    return { ok: false, error: msg };
-                  }
-                }
-              }
-              this.updateStatusBadge('Gagal Simpan Cloud', false);
-              return {
-                ok: false,
-                error: 'Koneksi ke Apps Script tertahan. Pastikan sudah Run setupPermissions & Deploy New version (akses: Anyone).'
-              };
             }
-          })(), 25000);
+          } catch (postErr) {}
+
+          // 2. Fallback otomatis ke GET + JSONP untuk aksi ringan (bebas blokir redirect POST)
+          const getSupported = ['registerUser', 'updateUser', 'deleteUser', 'saveSuratItem', 'deleteSuratItem', 'deleteKaryaItem', 'appendLog'];
+          if (getSupported.indexOf(action) !== -1 && rawBody.length < 7000) {
+            const getUrl = GAS_API_URL + '?action=' + encodeURIComponent(action) + '&payload=' + encodeURIComponent(rawBody);
+            const jsonpRes = await requestGASViaJSONP(getUrl);
+            if (jsonpRes && typeof jsonpRes.ok === 'boolean') {
+              this.updateStatusBadge(jsonpRes.ok ? 'Tersimpan di Spreadsheet' : 'Gagal Validasi Data', jsonpRes.ok);
+              return jsonpRes;
+            }
+          }
+
+          this.updateStatusBadge('Koneksi Tertahan', false);
+          return {
+            ok: false,
+            error: 'Koneksi ke Apps Script tertahan. Pastikan Code.gs v5.6 sudah di-Deploy sebagai New version dengan akses Anyone.'
+          };
         }
         return { ok: false, error: 'URL Apps Script tidak aktif.' };
       },
@@ -1509,7 +1552,7 @@
     };
 
     /* ==========================================================================
-       UTILITAS & LOGO LPKIA
+       UTILITAS & LOGO LPKIA (UNTUK EKSPOR PDF / WORD)
        ========================================================================== */
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
@@ -1549,76 +1592,55 @@
     }
 
     let cachedLPKIALogoDataURL = null;
-    function renderLPKIALogoCanvas(size) {
-      const s = size || 80;
-      const canvas = document.createElement('canvas');
-      canvas.width = s;
-      canvas.height = s;
-      const ctx = canvas.getContext('2d');
-      const pad = s * 0.08;
-      const innerW = s - pad * 2;
-      const innerH = s - pad * 2;
-      ctx.clearRect(0, 0, s, s);
-
-      const redW = innerW * 0.46;
-      const redH = innerH * 0.17;
-      ctx.fillStyle = '#dc2626';
-      ctx.fillRect(pad, pad, redW, redH);
-
-      const leftTopY = pad + redH + innerH * 0.08;
-      const bottomMainY = pad + innerH * 0.77;
-      ctx.fillStyle = '#1e1b78';
-      ctx.beginPath();
-      ctx.moveTo(pad, leftTopY);
-      ctx.lineTo(pad + redW, leftTopY);
-      ctx.lineTo(pad + redW, pad + innerH * 0.44);
-      ctx.lineTo(pad, bottomMainY);
-      ctx.closePath();
-      ctx.fill();
-
-      const rightStartX = pad + innerW * 0.50;
-      ctx.beginPath();
-      ctx.moveTo(rightStartX, pad + innerH * 0.42);
-      ctx.lineTo(pad + innerW, pad);
-      ctx.lineTo(pad + innerW, bottomMainY);
-      ctx.lineTo(rightStartX, bottomMainY);
-      ctx.closePath();
-      ctx.fill();
-
-      const ribbonY = pad + innerH * 0.82;
-      const ribbonH = innerH * 0.18;
-      ctx.fillRect(pad, ribbonY, innerW * 0.85, ribbonH * 0.55);
-      ctx.fillRect(pad + innerW * 0.15, ribbonY + ribbonH * 0.25, innerW * 0.85, ribbonH * 0.75);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 ' + Math.round(innerH * 0.175) + 'px Georgia, "Times New Roman", serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('LPKIA', pad + innerW * 0.52, ribbonY + ribbonH * 0.62);
-      return canvas;
-    }
-
     function getLPKIALogoDataURL() {
       if (!cachedLPKIALogoDataURL) {
-        cachedLPKIALogoDataURL = renderLPKIALogoCanvas(140).toDataURL('image/png');
+        const s = 140;
+        const canvas = document.createElement('canvas');
+        canvas.width = s;
+        canvas.height = s;
+        const ctx = canvas.getContext('2d');
+        const pad = s * 0.08;
+        const innerW = s - pad * 2;
+        const innerH = s - pad * 2;
+
+        const redW = innerW * 0.46;
+        const redH = innerH * 0.17;
+        ctx.fillStyle = '#dc2626';
+        ctx.fillRect(pad, pad, redW, redH);
+
+        const leftTopY = pad + redH + innerH * 0.08;
+        const bottomMainY = pad + innerH * 0.77;
+        ctx.fillStyle = '#1e1b78';
+        ctx.beginPath();
+        ctx.moveTo(pad, leftTopY);
+        ctx.lineTo(pad + redW, leftTopY);
+        ctx.lineTo(pad + redW, pad + innerH * 0.44);
+        ctx.lineTo(pad, bottomMainY);
+        ctx.closePath();
+        ctx.fill();
+
+        const rightStartX = pad + innerW * 0.50;
+        ctx.beginPath();
+        ctx.moveTo(rightStartX, pad + innerH * 0.42);
+        ctx.lineTo(pad + innerW, pad);
+        ctx.lineTo(pad + innerW, bottomMainY);
+        ctx.lineTo(rightStartX, bottomMainY);
+        ctx.closePath();
+        ctx.fill();
+
+        const ribbonY = pad + innerH * 0.82;
+        const ribbonH = innerH * 0.18;
+        ctx.fillRect(pad, ribbonY, innerW * 0.85, ribbonH * 0.55);
+        ctx.fillRect(pad + innerW * 0.15, ribbonY + ribbonH * 0.25, innerW * 0.85, ribbonH * 0.75);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 ' + Math.round(innerH * 0.175) + 'px Georgia, "Times New Roman", serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('LPKIA', pad + innerW * 0.52, ribbonY + ribbonH * 0.62);
+        cachedLPKIALogoDataURL = canvas.toDataURL('image/png');
       }
       return cachedLPKIALogoDataURL;
-    }
-
-    function mountAllLogos() {
-      [
-        { id: 'sidebar-logo-holder', size: 32 },
-        { id: 'navbar-logo-holder', size: 34 },
-        { id: 'auth-logo-holder', size: 48 }
-      ].forEach((item) => {
-        const el = document.getElementById(item.id);
-        if (el && !el.querySelector('svg')) {
-          el.innerHTML = '';
-          const c = renderLPKIALogoCanvas(item.size);
-          c.className = 'w-full h-full object-contain';
-          el.appendChild(c);
-        }
-      });
     }
 
     /* ==========================================================================
@@ -1700,8 +1722,8 @@
       }
     };
 
-    function initializeDefaultSeed() {
-      appState.users = [
+    function getDefaultManagerSeeds() {
+      return [
         {
           id: 'USR-001', name: 'Dayanni Vera Versanika., M.Kom', nidn: '0424099204',
           email: 'dayanniveraversanika@gmail.com', prodi: 'Teknik Informatika', role: 'Ketua LPPM',
@@ -1724,6 +1746,21 @@
           passwordHash: safeEncodePass('lpkia123')
         }
       ];
+    }
+
+    function ensureDefaultManagersPresent() {
+      if (!Array.isArray(appState.users)) appState.users = [];
+      const seeds = getDefaultManagerSeeds();
+      seeds.forEach((seed) => {
+        const exists = appState.users.some(
+          (u) => String(u.email || '').toLowerCase() === seed.email.toLowerCase() || u.id === seed.id
+        );
+        if (!exists) appState.users.push(seed);
+      });
+    }
+
+    function initializeDefaultSeed() {
+      appState.users = getDefaultManagerSeeds();
       if (!Array.isArray(appState.suratList)) appState.suratList = [];
       if (!Array.isArray(appState.karyaList)) appState.karyaList = [];
       if (!Array.isArray(appState.logs)) appState.logs = [];
@@ -1759,31 +1796,9 @@
 
       if (appState.users.length === 0) {
         initializeDefaultSeed();
+      } else {
+        ensureDefaultManagersPresent();
       }
-      ensureDefaultManagersPresent();
-    }
-
-    function ensureDefaultManagersPresent() {
-      const defaults = [
-        {
-          id: 'USR-001', name: 'Dayanni Vera Versanika., M.Kom', nidn: '0424099204',
-          email: 'dayanniveraversanika@gmail.com', prodi: 'Teknik Informatika', role: 'Ketua LPPM',
-          status: 'Disetujui', validatedAt: '10 November 2026, 08:00 WIB',
-          validatedBy: 'Sistem Otoritas LPPM', driveUrl: 'https://drive.google.com/',
-          passwordHash: safeEncodePass('lpkia123')
-        },
-        {
-          id: 'USR-002', name: 'Admin Sekretariat LPPM', nidn: '0411089001',
-          email: 'admin.lppmlpkia@gmail.com', prodi: 'Sistem Informasi', role: 'Admin',
-          status: 'Disetujui', validatedAt: '10 November 2026, 08:05 WIB',
-          validatedBy: 'Dayanni Vera Versanika., M.Kom', driveUrl: 'https://drive.google.com/',
-          passwordHash: safeEncodePass('lpkia123')
-        }
-      ];
-      defaults.forEach((def) => {
-        const exists = appState.users.some((u) => (u.email || '').toLowerCase() === def.email);
-        if (!exists) appState.users.unshift(def);
-      });
     }
 
     function saveLocalOnly() {
@@ -1814,7 +1829,7 @@
       saveLocalOnly();
       const res = await GASBridge.saveCloudState(appState);
       if (!res || !res.ok) {
-        showToast('Gagal sinkron ke Google Sheets: ' + ((res && res.error) || 'Periksa deploy Code.gs (New version & Anyone).'), 'error');
+        showToast('Gagal sinkron ke Google Sheets: ' + ((res && res.error) || 'Periksa deploy Code.gs.'), 'error');
         return false;
       }
       return true;
@@ -1824,13 +1839,13 @@
       const cloudData = await GASBridge.loadCloudState();
       if (cloudData && cloudData.ok !== false && Array.isArray(cloudData.users) && cloudData.users.length > 0) {
         appState.users = cloudData.users;
+        ensureDefaultManagersPresent();
         appState.suratList = Array.isArray(cloudData.suratList) ? cloudData.suratList : [];
         appState.karyaList = Array.isArray(cloudData.karyaList) ? cloudData.karyaList : [];
         appState.logs = Array.isArray(cloudData.logs) ? cloudData.logs : [];
         appState.defaultSignature = cloudData.defaultSignature || null;
 
-        ensureDefaultManagersPresent();
-        const migrated = migrateLegacyEmailsToGmail();
+        const migrated = migrateEmailsToGmail();
         saveLocalOnly();
         if (migrated) await GASBridge.saveCloudState(appState);
 
@@ -1838,7 +1853,8 @@
           const freshUser = appState.users.find((u) => u.id === appState.currentUser.id);
           if (freshUser) appState.currentUser = freshUser;
         }
-        if (showNotif) showToast('Data berhasil dimuat dari Spreadsheet (' + appState.users.length + ' akun).', 'success');
+        updateSidebarBadges();
+        if (showNotif) showToast('Data berhasil dimuat dari Google Sheets (' + appState.users.length + ' akun).', 'success');
         return true;
       }
       if (showNotif) {
@@ -1855,7 +1871,24 @@
         renderKaryaTable();
         renderLogsTable();
         updateDashboardStats();
+        renderDashboardVisuals();
       }
+    }
+
+    function updateSidebarBadges() {
+      const pendingAkun = appState.users.filter((u) => u.status === 'Menunggu Validasi').length;
+      const pendingSurat = getVisibleSuratList().filter((s) => s.status === 'Menunggu Persetujuan').length;
+      const pendingKarya = getVisibleKaryaList().filter((k) => k.status === 'Menunggu Persetujuan').length;
+
+      const setBadge = (id, count) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = String(count);
+        el.classList.toggle('hidden', count === 0);
+      };
+      setBadge('badge-pending-akun', pendingAkun);
+      setBadge('badge-pending-surat', pendingSurat);
+      setBadge('badge-pending-karya', pendingKarya);
     }
 
     /* ==========================================================================
@@ -1874,7 +1907,7 @@
       toast.className = 'pointer-events-auto rounded-xl px-4 py-3 text-xs font-semibold shadow-xl border-l-4 flex items-center justify-between gap-3 transition-all duration-300 backdrop-blur-md ' + (styles[type] || styles.info);
       toast.innerHTML = '\x3Cspan>' + escapeHtml(message) + '\x3C/span>\x3Cbutton type="button" onclick="this.parentElement.remove()" class="opacity-80 hover:opacity-100 font-bold">✕\x3C/button>';
       container.appendChild(toast);
-      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 4800);
+      setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 5200);
     }
 
     function closeModal(id) {
@@ -1917,22 +1950,16 @@
     }
 
     async function handleLoginSubmit(event) {
-      if (event && event.preventDefault) event.preventDefault();
+      event.preventDefault();
       const btn = document.getElementById('btn-login-submit');
       if (btn) { btn.disabled = true; btn.textContent = 'Memeriksa Database...'; }
 
       try {
-        try {
-          await hydrateFromCloud(false);
-        } catch (syncErr) {}
-
-        if (!Array.isArray(appState.users) || appState.users.length === 0) {
-          initializeDefaultSeed();
-        }
+        await hydrateFromCloud(false);
         ensureDefaultManagersPresent();
 
-        const identifier = (document.getElementById('login-username')?.value || '').trim().toLowerCase();
-        const password = document.getElementById('login-password')?.value || '';
+        const identifier = document.getElementById('login-username').value.trim().toLowerCase();
+        const password = document.getElementById('login-password').value;
 
         const user = appState.users.find((u) => {
           const email = (u.email || '').toLowerCase();
@@ -1962,11 +1989,8 @@
         });
 
         showToast('Selamat datang kembali, ' + user.name + '!', 'success');
-        const loginFormEl = document.getElementById('login-form');
-        if (loginFormEl) loginFormEl.reset();
+        document.getElementById('login-form').reset();
         enterAuthenticatedApp();
-      } catch (err) {
-        showToast('Kendala saat masuk ke dashboard: ' + (err.message || err), 'error');
       } finally {
         if (btn) {
           btn.disabled = false;
@@ -2003,12 +2027,13 @@
 
         const res = await GASBridge.sendAction('registerUser', { user: newUser });
         if (!res || !res.ok) {
-          showToast('Gagal menyimpan ke Google Sheets: ' + ((res && res.error) || 'Periksa koneksi atau deploy Code.gs (New version & Anyone).'), 'error');
+          showToast('Gagal menyimpan ke Google Sheets: ' + ((res && res.error) || 'Periksa deploy Code.gs (New version & Anyone).'), 'error');
           return;
         }
 
         if (Array.isArray(res.users)) appState.users = res.users;
         else appState.users.push(newUser);
+        ensureDefaultManagersPresent();
         saveLocalOnly();
 
         showToast('Registrasi berhasil & tercatat di Google Sheets! Menunggu validasi Admin di perangkat mana saja.', 'success');
@@ -2077,42 +2102,27 @@
     function enterAuthenticatedApp() {
       const user = appState.currentUser;
       if (!user) return;
+      document.getElementById('auth-view').classList.add('hidden');
+      document.getElementById('app-view').classList.remove('hidden');
+      document.getElementById('application-sidebar').classList.remove('hidden');
+      document.getElementById('application-sidebar').classList.add('flex');
+      document.getElementById('navbar-user-panel').classList.remove('hidden');
+      document.getElementById('navbar-user-panel').classList.add('flex');
+      document.getElementById('mobile-sidebar-toggle').classList.remove('hidden');
+      document.getElementById('mobile-sidebar-toggle').classList.add('flex');
 
-      const showEl = (id, displayClass) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.classList.remove('hidden');
-        if (displayClass) el.classList.add(displayClass);
-      };
-      const hideEl = (id, removeClass) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.classList.add('hidden');
-        if (removeClass) el.classList.remove(removeClass);
-      };
-      const setText = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-      };
-
-      hideEl('auth-view');
-      showEl('app-view');
-      showEl('application-sidebar', 'flex');
-      showEl('navbar-user-panel', 'flex');
-      showEl('mobile-sidebar-toggle', 'flex');
-
-      setText('nav-user-name', user.name);
-      setText('nav-user-role-badge', user.role);
-      setText('nav-user-email', user.email);
-      setText('welcome-role-pill', (user.role || 'DOSEN').toUpperCase());
-      setText('welcome-nidn', user.nidn || '-');
-      setText('welcome-prodi', user.prodi || '-');
-      setText('welcome-name', user.name);
+      document.getElementById('nav-user-name').textContent = user.name;
+      document.getElementById('nav-user-role-badge').textContent = user.role;
+      document.getElementById('nav-user-email').textContent = user.email;
+      document.getElementById('welcome-role-pill').textContent = user.role.toUpperCase();
+      document.getElementById('welcome-nidn').textContent = user.nidn || '-';
+      document.getElementById('welcome-prodi').textContent = user.prodi || '-';
+      document.getElementById('welcome-name').textContent = user.name;
 
       const isManager = isManagerRole();
-      setText('welcome-subtitle', isManager
+      document.getElementById('welcome-subtitle').textContent = isManager
         ? 'Panel kendali penuh Manajemen Surat Resmi IDE LPKIA, Pengajuan Karya Ilmiah Dosen, Validasi TTD, dan Otorisasi Akun.'
-        : 'Portal Dosen IDE LPKIA Bandung untuk pengajuan Surat Tugas, Kontrak Penelitian, dan Repositori Karya Ilmiah.');
+        : 'Portal Dosen IDE LPKIA Bandung untuk pengajuan Surat Tugas, Kontrak Penelitian, dan Repositori Karya Ilmiah.';
 
       document.querySelectorAll('.admin-only-menu').forEach((el) => el.classList.toggle('hidden', !isManager));
       const btnTtdHeader = document.getElementById('btn-upload-ttd-header');
@@ -2122,11 +2132,13 @@
       const karyaProdiEl = document.getElementById('karya-prodi');
       if (karyaProdiEl && user.prodi) karyaProdiEl.value = user.prodi;
       const karyaDriveEl = document.getElementById('karya-gdrive');
-      if (karyaDriveEl && user.driveUrl) karyaDriveEl.value = user.driveUrl;
+      if (karyaDriveEl && user.driveUrl && user.driveUrl !== 'https://drive.google.com/') {
+        karyaDriveEl.value = user.driveUrl;
+      }
 
+      updateSidebarBadges();
       startSessionTimer();
       switchMainTab('dashboard');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     /* ==========================================================================
@@ -2148,17 +2160,17 @@
       else if (tabName === 'surat-list') {
         renderSuratTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) renderSuratTable();
+        if (ok) { renderSuratTable(); updateDashboardStats(); }
       }
       else if (tabName === 'karya-list') {
         renderKaryaTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) renderKaryaTable();
+        if (ok) { renderKaryaTable(); updateDashboardStats(); }
       }
       else if (tabName === 'akun') {
         renderAkunTable();
         const ok = await hydrateFromCloud(false);
-        if (ok) renderAkunTable();
+        if (ok) { renderAkunTable(); updateDashboardStats(); }
       }
       else if (tabName === 'logs') {
         renderLogsTable();
@@ -2171,11 +2183,13 @@
        DASHBOARD & VISUALISASI
        ========================================================================== */
     function getVisibleSuratList() {
+      if (!appState.currentUser) return [];
       if (isManagerRole()) return appState.suratList;
       return appState.suratList.filter((s) => s.pemohonEmail === appState.currentUser.email);
     }
 
     function getVisibleKaryaList() {
+      if (!appState.currentUser) return [];
       if (isManagerRole()) return appState.karyaList;
       return appState.karyaList.filter((k) => k.dosenEmail === appState.currentUser.email);
     }
@@ -2186,13 +2200,21 @@
       const validSurat = surat.filter((s) => s.status === 'Tervalidasi').length;
       const pendingSurat = surat.filter((s) => s.status === 'Menunggu Persetujuan').length;
       const pendingKarya = karya.filter((k) => k.status === 'Menunggu Persetujuan').length;
+      const pendingAkun = isManagerRole() ? appState.users.filter((u) => u.status === 'Menunggu Validasi').length : 0;
 
       document.getElementById('stat-total-surat').textContent = surat.length;
       document.getElementById('stat-sub-surat').textContent = validSurat + ' Tervalidasi TTD';
-      document.getElementById('stat-pending-surat').textContent = pendingSurat + pendingKarya;
+      document.getElementById('stat-pending-surat').textContent = pendingSurat + pendingKarya + pendingAkun;
+      const detailEl = document.getElementById('stat-pending-detail');
+      if (detailEl) {
+        detailEl.textContent = isManagerRole()
+          ? (pendingAkun + ' Akun, ' + pendingSurat + ' Surat, ' + pendingKarya + ' Karya')
+          : (pendingSurat + ' Surat & ' + pendingKarya + ' Karya');
+      }
       document.getElementById('stat-total-karya').textContent = karya.length;
       document.getElementById('stat-sub-karya').textContent = karya.filter((k) => k.status === 'Tervalidasi').length + ' Terverifikasi';
       document.getElementById('stat-storage-info').textContent = appState.users.length + ' Akun & ' + (surat.length + karya.length) + ' Arsip';
+      updateSidebarBadges();
     }
 
     function renderDashboardVisuals() {
@@ -2266,8 +2288,8 @@
         '\x3Cdiv class="lg:col-span-3 editorial-card p-6 flex flex-col justify-between">',
         '  \x3Cdiv>',
         '    \x3Cspan class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-400/15 text-emerald-300">Cloud Database\x3C/span>',
-        '    \x3Ch3 class="text-sm font-extrabold text-[var(--text-primary)] mt-2">Sinkronisasi Lintas Browser\x3C/h3>',
-        '    \x3Cp class="text-xs text-[var(--text-muted)] mt-1 leading-relaxed">Seluruh akun, surat, dan karya ilmiah otomatis tersimpan di Google Sheets DB_LPPM_IDE_LPKIA.\x3C/p>',
+        '    \x3Ch3 class="text-sm font-extrabold text-[var(--text-primary)] mt-2">Google Sheets &amp; Drive\x3C/h3>',
+        '    \x3Cp class="text-xs text-[var(--text-muted)] mt-1 leading-relaxed">Akun, surat, dan file karya otomatis tersimpan di DB_LPPM_IDE_LPKIA &amp; Google Drive.\x3C/p>',
         '  \x3C/div>',
         '  \x3Cdiv class="my-3 flex justify-center">',
         '    \x3Csvg viewBox="0 0 180 110" class="w-40 h-auto" role="img" aria-label="Ilustrasi Penyimpanan Cloud">',
@@ -2279,7 +2301,7 @@
         '      \x3Crect x="52" y="53" width="80" height="6" rx="3" fill="#c88652" fill-opacity="0.55" />',
         '      \x3Crect x="25" y="74" width="130" height="24" rx="6" fill="rgba(52,211,153,0.14)" stroke="#34d399" stroke-width="1.5" />',
         '      \x3Ccircle cx="40" cy="86" r="4" fill="#34d399" />',
-        '      \x3Ctext x="52" y="89" fill="#34d399" font-size="9" font-weight="700">SHEETS SYNC ACTIVE\x3C/text>',
+        '      \x3Ctext x="52" y="89" fill="#34d399" font-size="9" font-weight="700">SHEETS &amp; DRIVE ACTIVE\x3C/text>',
         '    \x3C/svg>',
         '  \x3C/div>',
         '  \x3Cdiv class="text-[11px] font-semibold text-[var(--text-secondary)] flex items-center justify-between pt-2 border-t border-[var(--border-soft)]">',
@@ -2290,7 +2312,7 @@
     }
 
     /* ==========================================================================
-       SURAT RESMI, PESERTA DINAMIS & UPLOAD TTD
+       SURAT RESMI, PESERTA DINAMIS, HAPUS & UPLOAD TTD
        ========================================================================== */
     function generateAutoNomorSurat() {
       const tpl = document.getElementById('surat-template').value;
@@ -2367,38 +2389,61 @@
 
     async function handleCreateSuratSubmit(event) {
       event.preventDefault();
-      const peserta = [];
-      document.querySelectorAll('#tim-pelaksana-list .tim-row').forEach((r) => {
-        peserta.push({
-          nama: r.querySelector('.peserta-nama').value.trim(),
-          nidn: r.querySelector('.peserta-nidn').value.trim(),
-          jabatan: r.querySelector('.peserta-jabatan').value.trim(),
-          prodi: r.querySelector('.peserta-prodi').value
+      const btn = document.getElementById('btn-submit-surat');
+      if (btn) { btn.disabled = true; btn.textContent = 'Menyimpan ke Spreadsheet...'; }
+
+      try {
+        const peserta = [];
+        document.querySelectorAll('#tim-pelaksana-list .tim-row').forEach((r) => {
+          peserta.push({
+            nama: r.querySelector('.peserta-nama').value.trim(),
+            nidn: r.querySelector('.peserta-nidn').value.trim(),
+            jabatan: r.querySelector('.peserta-jabatan').value.trim(),
+            prodi: r.querySelector('.peserta-prodi').value
+          });
         });
-      });
 
-      const jenis = document.getElementById('surat-template').value;
-      const nomor = document.getElementById('surat-nomor').value.trim();
-      const judul = document.getElementById('surat-judul').value.trim();
+        const jenis = document.getElementById('surat-template').value;
+        const nomor = document.getElementById('surat-nomor').value.trim();
+        const judul = document.getElementById('surat-judul').value.trim();
+        const newSurat = {
+          id: 'SRT-' + Date.now(), nomor: nomor, jenis: jenis,
+          tanggal: document.getElementById('surat-tanggal').value,
+          periode: document.getElementById('surat-periode').value.trim(),
+          lokasi: document.getElementById('surat-lokasi').value.trim(),
+          judul: judul, dasar: document.getElementById('surat-dasar').value.trim(),
+          dana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-dana').value.trim() : '',
+          sumberDana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-sumber-dana').value.trim() : '',
+          pemohonName: appState.currentUser.name, pemohonEmail: appState.currentUser.email,
+          peserta: peserta, status: 'Menunggu Persetujuan',
+          catatan: 'Diajukan oleh dosen, menunggu verifikasi & TTD Ketua LPPM.',
+          validatedBy: '', signatureData: null, createdAt: new Date().toLocaleString('id-ID')
+        };
 
-      appState.suratList.unshift({
-        id: 'SRT-' + Date.now(), nomor: nomor, jenis: jenis,
-        tanggal: document.getElementById('surat-tanggal').value,
-        periode: document.getElementById('surat-periode').value.trim(),
-        lokasi: document.getElementById('surat-lokasi').value.trim(),
-        judul: judul, dasar: document.getElementById('surat-dasar').value.trim(),
-        dana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-dana').value.trim() : '',
-        sumberDana: jenis === 'Surat Perjanjian Kontrak Penelitian' ? document.getElementById('surat-sumber-dana').value.trim() : '',
-        pemohonName: appState.currentUser.name, pemohonEmail: appState.currentUser.email,
-        peserta: peserta, status: 'Menunggu Persetujuan',
-        catatan: 'Diajukan oleh dosen, menunggu verifikasi & TTD Ketua LPPM.',
-        validatedBy: '', signatureData: null, createdAt: new Date().toLocaleString('id-ID')
-      });
+        const res = await GASBridge.sendAction('saveSuratItem', {
+          surat: newSurat,
+          actor: appState.currentUser.name + ' (' + appState.currentUser.role + ')'
+        });
 
-      const ok = await saveAndSyncCloud('Pengajuan Surat Resmi', 'Mengajukan ' + jenis + ' (' + nomor + ') berjudul "' + judul + '".');
-      if (ok) showToast('Surat resmi berhasil diajukan & tersimpan di Google Sheets.', 'success');
-      resetFormSurat();
-      switchMainTab('surat-list');
+        if (res && res.ok && Array.isArray(res.suratList)) {
+          appState.suratList = res.suratList;
+          saveLocalOnly();
+          showToast('Surat resmi berhasil diajukan & tersimpan di Google Sheets.', 'success');
+        } else {
+          appState.suratList.unshift(newSurat);
+          await saveAndSyncCloud('Pengajuan Surat Resmi', 'Mengajukan ' + jenis + ' (' + nomor + ') berjudul "' + judul + '".');
+          showToast('Surat resmi berhasil diajukan.', 'success');
+        }
+
+        resetFormSurat();
+        updateDashboardStats();
+        switchMainTab('surat-list');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = '\x3Ci class="ti ti-send text-base">\x3C/i>\x3Cspan>Ajukan &amp; Simpan Surat Resmi\x3C/span>';
+        }
+      }
     }
 
     function renderSuratTable() {
@@ -2431,11 +2476,14 @@
         else if (s.status === 'Ditolak') badge = '\x3Cspan class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-400/15 text-red-300">Ditolak\x3C/span>';
         const canDownload = s.status === 'Tervalidasi' || manager;
         const firstProdi = (s.peserta && s.peserta[0] && s.peserta[0].prodi) ? s.peserta[0].prodi : '-';
+        const delKey = 'surat:' + s.id;
+        const isConfirmingDel = pendingDeleteKey === delKey;
 
         const mgrActions = manager ? [
           '\x3Cbutton type="button" onclick="triggerQuickTTDUpload(\'' + s.id + '\')" class="btn-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-signature">\x3C/i>\x3Cspan>Upload TTD\x3C/span>\x3C/button>',
           '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Tervalidasi\')" class="px-2 py-1.5 rounded-full bg-emerald-400/15 hover:bg-emerald-400/30 text-emerald-300 text-[11px] font-bold transition cursor-pointer" title="Setujui">\x3Ci class="ti ti-check">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>'
+          '\x3Cbutton type="button" onclick="openDecisionModal(\'surat\', \'' + s.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>',
+          '\x3Cbutton type="button" onclick="handleDeleteItem(\'surat\', \'' + s.id + '\')" class="px-2 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Surat">' + (isConfirmingDel ? 'Yakin?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
         ].join('') : '';
 
         const dlActions = canDownload ? [
@@ -2742,14 +2790,8 @@
     function openSignatureModal() {
       const img = document.getElementById('signature-preview-img');
       const empty = document.getElementById('signature-empty-text');
-      if (appState.defaultSignature) {
-        img.src = appState.defaultSignature;
-        img.classList.remove('hidden');
-        empty.classList.add('hidden');
-      } else {
-        img.classList.add('hidden');
-        empty.classList.remove('hidden');
-      }
+      if (appState.defaultSignature) { img.src = appState.defaultSignature; img.classList.remove('hidden'); empty.classList.add('hidden'); }
+      else { img.classList.add('hidden'); empty.classList.remove('hidden'); }
       document.getElementById('modal-signature').classList.remove('hidden');
     }
 
@@ -2774,7 +2816,7 @@
     }
 
     /* ==========================================================================
-       SIKLUS 4 TAHAP & KARYA ILMIAH (UNGGAH OTOMATIS KE GOOGLE DRIVE)
+       SIKLUS 4 TAHAP & UNGGAH KARYA OTOMATIS KE GOOGLE DRIVE
        ========================================================================== */
     function selectCycleStage(stageNum) {
       const stageLabels = {
@@ -2809,18 +2851,13 @@
       else if (val.indexOf('Tahap 04') !== -1) selectCycleStage(4);
     }
 
-    function readFileAsBase64Payload(file) {
+    function readFileAsBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => {
-          const result = String(reader.result || '');
-          const commaIdx = result.indexOf(',');
-          const base64Data = commaIdx !== -1 ? result.slice(commaIdx + 1) : result;
-          resolve({
-            base64Data: base64Data,
-            mimeType: file.type || 'application/octet-stream',
-            fileName: file.name
-          });
+          const res = String(reader.result || '');
+          const commaIdx = res.indexOf(',');
+          resolve(commaIdx !== -1 ? res.slice(commaIdx + 1) : res);
         };
         reader.onerror = reject;
         reader.readAsDataURL(file);
@@ -2830,7 +2867,7 @@
     async function handleCreateKaryaSubmit(event) {
       event.preventDefault();
       const btn = document.getElementById('btn-submit-karya');
-      if (btn) { btn.disabled = true; btn.textContent = 'Mengunggah ke Google Drive...'; }
+      if (btn) { btn.disabled = true; btn.textContent = 'Mengunggah ke Google Drive & Sheets...'; }
 
       try {
         const fileInput = document.getElementById('karya-file');
@@ -2846,12 +2883,17 @@
           }
           fileName = file.name;
           fileSize = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
-          filePayload = await readFileAsBase64Payload(file);
+          const base64Data = await readFileAsBase64(file);
+          filePayload = {
+            fileName: file.name,
+            mimeType: file.type || 'application/octet-stream',
+            base64Data: base64Data
+          };
         }
 
         const manualDriveUrl = document.getElementById('karya-gdrive').value.trim();
-        if (!filePayload && !manualDriveUrl) {
-          showToast('Silakan unggah file lampiran atau isi tautan Google Drive Anda.', 'warning');
+        if (!file && !manualDriveUrl) {
+          showToast('Silakan unggah berkas dokumen atau isi tautan folder Google Drive Anda.', 'warning');
           return;
         }
 
@@ -2881,23 +2923,27 @@
           if (Array.isArray(res.karyaList)) appState.karyaList = res.karyaList;
           else appState.karyaList.unshift(res.karya || newKarya);
           saveLocalOnly();
-          showToast(res.fileUrl
-            ? 'Berkas berhasil diunggah ke folder Google Drive LPPM & tercatat di Spreadsheet!'
-            : 'Proposal / karya ilmiah berhasil dikirim & tersimpan di Spreadsheet.', 'success');
+
+          const driveMsg = res.fileUrl
+            ? 'Berkas otomatis tersimpan di folder Google Drive LPPM & tercatat di Google Sheets!'
+            : 'Proposal / karya ilmiah berhasil tercatat di Google Sheets!';
+          showToast(driveMsg, 'success');
         } else {
           appState.karyaList.unshift(newKarya);
           await saveAndSyncCloud('Pengajuan Karya Ilmiah', 'Mengajukan ' + newKarya.jenis + ': "' + newKarya.judul + '".');
-          showToast('Pengajuan tersimpan (Unggah Drive langsung butuh deploy ulang Code.gs).', 'warning');
+          showToast('Tersimpan lokal (Pastikan setupPermissions sudah dijalankan untuk unggah Drive otomatis).', 'warning');
         }
 
         event.target.reset();
         selectCycleStage(1);
         updateDashboardStats();
         switchMainTab('karya-list');
+      } catch (err) {
+        showToast('Gagal memproses berkas: ' + err.message, 'error');
       } finally {
         if (btn) {
           btn.disabled = false;
-          btn.innerHTML = '\x3Ci class="ti ti-cloud-upload text-base">\x3C/i>\x3Cspan>Kirim &amp; Unggah ke Google Drive\x3C/span>';
+          btn.innerHTML = '\x3Ci class="ti ti-cloud-upload text-base">\x3C/i>\x3Cspan>Kirim &amp; Simpan ke Google Drive\x3C/span>';
         }
       }
     }
@@ -2929,9 +2975,14 @@
         if (k.status === 'Tervalidasi') badge = '\x3Cspan class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-400/15 text-emerald-300">Tervalidasi LPPM\x3C/span>';
         else if (k.status === 'Ditolak') badge = '\x3Cspan class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-400/15 text-red-300">Perlu Revisi / Ditolak\x3C/span>';
 
+        const delKey = 'karya:' + k.id;
+        const isConfirmingDel = pendingDeleteKey === delKey;
+        const targetLink = k.driveFileUrl || k.gdriveUrl || 'https://drive.google.com/';
+
         const mgrButtons = manager ? [
           '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Tervalidasi\')" class="px-2 py-1.5 rounded-full bg-emerald-400/15 hover:bg-emerald-400/30 text-emerald-300 text-[11px] font-bold transition cursor-pointer" title="Validasi Karya">\x3Ci class="ti ti-check">\x3C/i>\x3C/button>',
-          '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>'
+          '\x3Cbutton type="button" onclick="openDecisionModal(\'karya\', \'' + k.id + '\', \'Ditolak\')" class="px-2 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer" title="Tolak">\x3Ci class="ti ti-x">\x3C/i>\x3C/button>',
+          '\x3Cbutton type="button" onclick="handleDeleteItem(\'karya\', \'' + k.id + '\')" class="px-2 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Karya">' + (isConfirmingDel ? 'Yakin?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
         ].join('') : '';
 
         return [
@@ -2941,8 +2992,8 @@
           '  \x3Ctd class="p-3.5 align-top">\x3Cspan class="inline-block px-2.5 py-1 rounded-md bg-[#e5bc98]/15 text-[#e5bc98] font-semibold text-[11px]">' + escapeHtml(k.tahap) + '\x3C/span>\x3Cdiv class="text-[11px] text-[var(--text-muted)] mt-1">\x3Ci class="ti ti-paperclip">\x3C/i> ' + escapeHtml(k.fileName) + ' (' + escapeHtml(k.fileSize) + ')\x3C/div>\x3C/td>',
           '  \x3Ctd class="p-3.5 align-top text-center max-w-[190px]">' + badge + '\x3Cdiv class="text-[10px] text-[var(--text-muted)] mt-1">' + escapeHtml(k.catatan || '') + '\x3C/div>\x3C/td>',
           '  \x3Ctd class="p-3.5 align-top text-center">\x3Cdiv class="flex flex-wrap items-center justify-center gap-1.5">',
-          '    \x3Ca href="' + escapeHtml(k.gdriveUrl) + '" target="_blank" rel="noopener noreferrer" class="btn-outline-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-external-link">\x3C/i>\x3Cspan>Buka\x3C/span>\x3C/a>',
-          '    \x3Cbutton type="button" onclick="downloadKaryaMetadataFile(\'' + k.id + '\')" class="btn-outline-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-download">\x3C/i>\x3Cspan>Unduh\x3C/span>\x3C/button>',
+          '    \x3Ca href="' + escapeHtml(targetLink) + '" target="_blank" rel="noopener noreferrer" class="btn-outline-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-brand-google-drive text-emerald-400">\x3C/i>\x3Cspan>Buka Drive\x3C/span>\x3C/a>',
+          '    \x3Cbutton type="button" onclick="downloadKaryaMetadataFile(\'' + k.id + '\')" class="btn-outline-sand px-2.5 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-download">\x3C/i>\x3Cspan>Info\x3C/span>\x3C/button>',
           mgrButtons,
           '  \x3C/div>\x3C/td>',
           '\x3C/tr>'
@@ -2957,7 +3008,7 @@
         'LEMBAR PENGESAHAN & REPOSITORI DOKUMEN LPPM IDE LPKIA BANDUNG',
         '============================================================',
         'Judul Karya   : ' + k.judul, 'Jenis Dokumen : ' + k.jenis, 'Tahap Siklus  : ' + k.tahap,
-        'Dosen Pengusul: ' + k.dosenName + ' (' + k.prodi + ')', 'Tautan        : ' + k.gdriveUrl,
+        'Dosen Pengusul: ' + k.dosenName + ' (' + k.prodi + ')', 'Tautan Drive  : ' + (k.driveFileUrl || k.gdriveUrl),
         'Lampiran      : ' + k.fileName + ' (' + k.fileSize + ')', 'Status LPPM   : ' + k.status,
         'Catatan       : ' + k.catatan, 'Ringkasan     : ' + k.ringkasan
       ].join('\n');
@@ -2973,7 +3024,7 @@
     function exportKaryaCSV() {
       const list = getVisibleKaryaList();
       if (list.length === 0) { showToast('Tidak ada data karya untuk diekspor.', 'warning'); return; }
-      const headers = ['No', 'Tahap Siklus', 'Jenis Karya', 'Judul', 'Dosen', 'Program Studi', 'Status', 'Tautan', 'Tanggal'];
+      const headers = ['No', 'Tahap Siklus', 'Jenis Karya', 'Judul', 'Dosen', 'Program Studi', 'Status', 'Tautan Google Drive', 'Tanggal'];
       const rows = list.map((k, idx) => [
         idx + 1,
         '"' + k.tahap.replace(/"/g, '""') + '"',
@@ -2982,7 +3033,7 @@
         '"' + k.dosenName.replace(/"/g, '""') + '"',
         '"' + k.prodi.replace(/"/g, '""') + '"',
         '"' + k.status.replace(/"/g, '""') + '"',
-        '"' + k.gdriveUrl.replace(/"/g, '""') + '"',
+        '"' + (k.driveFileUrl || k.gdriveUrl).replace(/"/g, '""') + '"',
         '"' + k.createdAt + '"'
       ].join(','));
       const blob = new Blob(['\uFEFF' + [headers.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
@@ -2997,8 +3048,8 @@
     function exportKaryaXLS() {
       const list = getVisibleKaryaList();
       if (list.length === 0) { showToast('Tidak ada data karya untuk diekspor.', 'warning'); return; }
-      const rows = list.map((k, idx) => '\x3Ctr>\x3Ctd>' + (idx + 1) + '\x3C/td>\x3Ctd>' + escapeHtml(k.tahap) + '\x3C/td>\x3Ctd>' + escapeHtml(k.jenis) + '\x3C/td>\x3Ctd>' + escapeHtml(k.judul) + '\x3C/td>\x3Ctd>' + escapeHtml(k.dosenName) + '\x3C/td>\x3Ctd>' + escapeHtml(k.prodi) + '\x3C/td>\x3Ctd>' + escapeHtml(k.status) + '\x3C/td>\x3Ctd>' + escapeHtml(k.gdriveUrl) + '\x3C/td>\x3C/tr>').join('');
-      const htmlExcel = '\x3Chtml xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">\x3Chead>\x3Cmeta charset="utf-8" />\x3C/head>\x3Cbody>\x3Ctable border="1">\x3Cthead>\x3Ctr style="background:#1b2d3f;color:#e5bc98;font-weight:bold;">\x3Cth>No\x3C/th>\x3Cth>Tahap Siklus\x3C/th>\x3Cth>Jenis Karya\x3C/th>\x3Cth>Judul Proposal / Karya\x3C/th>\x3Cth>Dosen Pengusul\x3C/th>\x3Cth>Program Studi\x3C/th>\x3Cth>Status\x3C/th>\x3Cth>Tautan\x3C/th>\x3C/tr>\x3C/thead>\x3Ctbody>' + rows + '\x3C/tbody>\x3C/table>\x3C/body>\x3C/html>';
+      const rows = list.map((k, idx) => '\x3Ctr>\x3Ctd>' + (idx + 1) + '\x3C/td>\x3Ctd>' + escapeHtml(k.tahap) + '\x3C/td>\x3Ctd>' + escapeHtml(k.jenis) + '\x3C/td>\x3Ctd>' + escapeHtml(k.judul) + '\x3C/td>\x3Ctd>' + escapeHtml(k.dosenName) + '\x3C/td>\x3Ctd>' + escapeHtml(k.prodi) + '\x3C/td>\x3Ctd>' + escapeHtml(k.status) + '\x3C/td>\x3Ctd>' + escapeHtml(k.driveFileUrl || k.gdriveUrl) + '\x3C/td>\x3C/tr>').join('');
+      const htmlExcel = '\x3Chtml xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">\x3Chead>\x3Cmeta charset="utf-8" />\x3C/head>\x3Cbody>\x3Ctable border="1">\x3Cthead>\x3Ctr style="background:#1b2d3f;color:#e5bc98;font-weight:bold;">\x3Cth>No\x3C/th>\x3Cth>Tahap Siklus\x3C/th>\x3Cth>Jenis Karya\x3C/th>\x3Cth>Judul Proposal / Karya\x3C/th>\x3Cth>Dosen Pengusul\x3C/th>\x3Cth>Program Studi\x3C/th>\x3Cth>Status\x3C/th>\x3Cth>Tautan Google Drive\x3C/th>\x3C/tr>\x3C/thead>\x3Ctbody>' + rows + '\x3C/tbody>\x3C/table>\x3C/body>\x3C/html>';
       const blob = new Blob(['\ufeff', htmlExcel], { type: 'application/vnd.ms-excel' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -3046,8 +3097,86 @@
     }
 
     /* ==========================================================================
-       MANAJEMEN AKUN & AUDIT LOG (ATOMIK LANGSUNG KE GOOGLE SHEETS)
+       MANAJEMEN AKUN, HAPUS DATA (2-KLIK AMAN) & AUDIT LOG
        ========================================================================== */
+    async function handleDeleteItem(type, id) {
+      const key = type + ':' + id;
+      if (pendingDeleteKey !== key) {
+        pendingDeleteKey = key;
+        if (pendingDeleteTimer) clearTimeout(pendingDeleteTimer);
+        pendingDeleteTimer = setTimeout(() => {
+          pendingDeleteKey = null;
+          if (type === 'user') renderAkunTable();
+          else if (type === 'surat') renderSuratTable();
+          else if (type === 'karya') renderKaryaTable();
+        }, 4000);
+        if (type === 'user') renderAkunTable();
+        else if (type === 'surat') renderSuratTable();
+        else if (type === 'karya') renderKaryaTable();
+        return;
+      }
+
+      pendingDeleteKey = null;
+      if (pendingDeleteTimer) clearTimeout(pendingDeleteTimer);
+
+      if (type === 'user') {
+        if (appState.currentUser && appState.currentUser.id === id) {
+          showToast('Anda tidak dapat menghapus akun yang sedang digunakan untuk login.', 'warning');
+          renderAkunTable();
+          return;
+        }
+        const target = appState.users.find((u) => u.id === id);
+        if (!target) return;
+        const res = await GASBridge.sendAction('deleteUser', {
+          userId: id,
+          actor: appState.currentUser ? (appState.currentUser.name + ' (' + appState.currentUser.role + ')') : 'Admin LPPM'
+        });
+        if (!res || !res.ok) {
+          showToast('Gagal menghapus akun di Spreadsheet: ' + ((res && res.error) || 'Coba lagi.'), 'error');
+          renderAkunTable();
+          return;
+        }
+        if (Array.isArray(res.users)) appState.users = res.users;
+        else appState.users = appState.users.filter((u) => u.id !== id);
+        saveLocalOnly();
+        renderAkunTable();
+        updateDashboardStats();
+        showToast('Akun ' + target.name + ' (' + target.email + ') berhasil dihapus dari Spreadsheet.', 'info');
+        return;
+      }
+
+      if (type === 'surat') {
+        const target = appState.suratList.find((s) => s.id === id);
+        if (!target) return;
+        const res = await GASBridge.sendAction('deleteSuratItem', {
+          suratId: id,
+          actor: appState.currentUser ? appState.currentUser.name : 'Admin LPPM'
+        });
+        if (res && res.ok && Array.isArray(res.suratList)) appState.suratList = res.suratList;
+        else appState.suratList = appState.suratList.filter((s) => s.id !== id);
+        saveLocalOnly();
+        renderSuratTable();
+        updateDashboardStats();
+        showToast('Surat ' + target.nomor + ' berhasil dihapus.', 'info');
+        return;
+      }
+
+      if (type === 'karya') {
+        const target = appState.karyaList.find((k) => k.id === id);
+        if (!target) return;
+        const res = await GASBridge.sendAction('deleteKaryaItem', {
+          karyaId: id,
+          actor: appState.currentUser ? appState.currentUser.name : 'Admin LPPM'
+        });
+        if (res && res.ok && Array.isArray(res.karyaList)) appState.karyaList = res.karyaList;
+        else appState.karyaList = appState.karyaList.filter((k) => k.id !== id);
+        saveLocalOnly();
+        renderKaryaTable();
+        updateDashboardStats();
+        showToast('Data karya ilmiah berhasil dihapus.', 'info');
+      }
+    }
+
     function renderAkunTable() {
       const tbody = document.getElementById('akun-table-body');
       const summaryEl = document.getElementById('akun-summary-badges');
@@ -3102,6 +3231,13 @@
           '\x3Cbutton type="button" onclick="quickUpdateUserStatus(\'' + u.id + '\', \'Ditolak\')" class="px-2.5 py-1.5 rounded-full bg-red-400/15 hover:bg-red-400/30 text-red-300 text-[11px] font-bold transition cursor-pointer">Tolak\x3C/button>'
         ].join('') : '';
 
+        const isSelf = appState.currentUser && appState.currentUser.id === u.id;
+        const delKey = 'user:' + u.id;
+        const isConfirmingDel = pendingDeleteKey === delKey;
+        const deleteBtn = !isSelf
+          ? '\x3Cbutton type="button" onclick="handleDeleteItem(\'user\', \'' + u.id + '\')" class="px-2.5 py-1.5 rounded-full ' + (isConfirmingDel ? 'bg-red-600 text-white' : 'bg-red-500/15 hover:bg-red-500/30 text-red-300') + ' text-[11px] font-bold transition cursor-pointer" title="Hapus Akun">' + (isConfirmingDel ? 'Yakin Hapus?' : '\x3Ci class="ti ti-trash">\x3C/i>') + '\x3C/button>'
+          : '';
+
         return [
           '\x3Ctr class="table-body-row transition">',
           '  \x3Ctd class="p-3.5 align-top font-bold text-[var(--text-primary)]">' + escapeHtml(u.name) + '\x3C/td>',
@@ -3113,6 +3249,7 @@
           '  \x3Ctd class="p-3.5 align-top text-center">\x3Cdiv class="flex flex-wrap items-center justify-center gap-1.5">',
           pendingBtns,
           '    \x3Cbutton type="button" onclick="openEditAkunModal(\'' + u.id + '\')" class="btn-outline-sand px-3 py-1.5 text-[11px] flex items-center gap-1">\x3Ci class="ti ti-edit">\x3C/i>\x3Cspan>Edit &amp; Sandi\x3C/span>\x3C/button>',
+          deleteBtn,
           '  \x3C/div>\x3C/td>',
           '\x3C/tr>'
         ].join('');
@@ -3143,12 +3280,11 @@
       else Object.assign(user, updated);
       saveLocalOnly();
       renderAkunTable();
+      updateDashboardStats();
 
       const labelStatus = newStatus === 'Disetujui' ? 'Tervalidasi' : newStatus;
-      const emailInfo = res.emailSent
-        ? (' & notifikasi email terkirim ke ' + updated.email)
-        : (newStatus === 'Disetujui' && res.emailError ? ' (Catatan email: ' + res.emailError + ')' : '');
-      showToast('Akun ' + updated.name + ' berstatus ' + labelStatus + emailInfo + '!', 'success');
+      const mailNote = res.emailSent ? ' & notifikasi email terkirim ke ' + updated.email : '';
+      showToast('Akun ' + updated.name + ' berstatus ' + labelStatus + mailNote + '!', 'success');
     }
 
     function openEditAkunModal(userId) {
@@ -3220,9 +3356,10 @@
 
         saveLocalOnly();
         renderAkunTable();
+        updateDashboardStats();
         closeModal('modal-edit-akun');
-        const emailInfo = res.emailSent ? (' & email notifikasi terkirim ke ' + updated.email) : '';
-        showToast('Perubahan akun ' + updated.name + ' tersimpan permanen di Spreadsheet' + emailInfo + '!', 'success');
+        const mailNote = res.emailSent ? ' (Email notifikasi terkirim ke dosen)' : '';
+        showToast('Perubahan akun ' + updated.name + ' tersimpan permanen di Spreadsheet!' + mailNote, 'success');
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = 'Simpan ke Spreadsheet'; }
       }
@@ -3271,7 +3408,6 @@
       window.__SIMLPPM_INITIALIZED__ = true;
 
       initEditorialTheme();
-      mountAllLogos();
       loadLocalCacheOnly();
 
       ['click', 'keydown'].forEach((evt) => {
@@ -3289,6 +3425,7 @@
       hydrateFromCloud(false).then((ok) => {
         if (ok && appState.currentUser) {
           updateDashboardStats();
+          renderDashboardVisuals();
           renderAkunTable();
           renderSuratTable();
           renderKaryaTable();
